@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,18 +18,11 @@
         rel="stylesheet" />
 
     @vite([
-    'resources/sass/app.scss',
-    'public/assets/css/core.css',
-    'public/assets/css/theme-default.css',
-    'public/assets/css/fonts/boxicons.css',
-    'public/assets/css/demo.css',
+    'public/admin_assets/css/core.css',
+    'public/admin_assets/css/theme-default.css',
+    'public/admin_assets/css/fonts/boxicons.css',
+    'public/admin_assets/css/demo.css',
     ])
-
-    {{-- <link rel="stylesheet" href="{{ asset() }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset() }}"> --}}
-     {{-- <link rel="stylesheet" href="{{ asset() }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset() }}"> --}}
-
 
 </head>
 
@@ -175,11 +169,15 @@
                         <div
                             class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                             <div class="mb-2 mb-md-0">
-                                Developed by Iftekher Mahmud Pervez
+                                <p class="m-0">Developed by Iftekher Mahmud Pervez</p>
+                                <p class="m-0">Version: 1.5.0</p>
                             </div>
+                            <div>
 
-                            <div class="">
-                                Version: 1.5.0
+                            </div>
+                            <div class="d-flex gap-4 align-items-center justify-content-between">
+                                <p>{{ round(microtime(true) - LARAVEL_START,4) }} secounds</p>
+
                             </div>
 
                         </div>
@@ -206,8 +204,8 @@
 
 @vite([
     'resources/js/app.js',
-    'public/assets/js/bootstrap.js',
-    'public/assets/js/main.js',
+    // 'public/admin_assets/js/bootstrap.js',
+    'public/admin_assets/js/main.js',
 ]);
    {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
     {{-- <script src="{{ asset() }}"></script> --}}

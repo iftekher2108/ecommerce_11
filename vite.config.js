@@ -5,16 +5,23 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                // admin
                 'resources/sass/app.scss',
-                'public/assets/css/core.css',
-                'public/assets/css/theme-default.css',
-                'public/assets/css/fonts/boxicons.css',
-                'public/assets/css/demo.css',
-
-                
                 'resources/js/app.js',
-                'public/assets/js/bootstrap.js',
-                'public/assets/js/main.js',
+
+                'public/admin_assets/css/core.css',
+                'public/admin_assets/css/theme-default.css',
+                'public/admin_assets/css/fonts/boxicons.css',
+                'public/admin_assets/css/demo.css',
+
+                // 'public/admin_assets/js/bootstrap.js',
+                'public/admin_assets/js/main.js',
+
+
+
+                // store
+                "public/scss/store.scss"
+          
             ],
             refresh: true,
         }),
