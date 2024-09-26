@@ -17,12 +17,19 @@
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
 
-    @vite([
+    {{-- @vite([
     'public/admin_assets/css/core.css',
     'public/admin_assets/css/theme-default.css',
     'public/admin_assets/css/fonts/boxicons.css',
     'public/admin_assets/css/demo.css',
-    ])
+    ]) --}}
+
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/core.css',) }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/theme-default.css',) }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/fonts/boxicons.css',) }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/demo.css',) }}">
+
+
 
 </head>
 
@@ -84,7 +91,7 @@
                                      {{ Auth::user()->name }}
                                     </div>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
+                                <ul class="dropdown-menu dropdown-menu-end animate slideIn">
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex">
@@ -202,14 +209,17 @@
 
 
 
-@vite([
+{{-- @vite([
     'resources/js/app.js',
     // 'public/admin_assets/js/bootstrap.js',
     'public/admin_assets/js/main.js',
-]);
-   {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset() }}"></script> --}}
+]); --}}
+
+
+    <script src="{{ asset('admin_assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/main.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/menu.js') }}"></script> --}}
-    {{-- <script src="{{ asset() }}"></script> --}}
+
 </body>
 </html>

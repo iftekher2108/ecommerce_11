@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Flex Pricing Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 50px 20px;
+            box-sizing: border-box;
+        }
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #333;
+            border-radius: 30px;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .menu li {
+            list-style-type: none;
+        }
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            transition: all 0.3s ease;
+        }
+        .menu a:hover {
+            background-color: #555;
+        }
+        .card {
+            width: 100%;
+            max-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .card-text {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            .menu {
+                flex-direction: column;
+                align-items: center;
+                border-radius: 15px;
+            }
+            .menu a {
+                width: 100%;
+                text-align: center;
+            }
+            .card {
+                max-width: 100%;
+            }
+        }
+
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            transition: all 0.5s ease;
+        }
+
+        .hero-image-container:hover .hero-image {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,123,255,0.3), rgba(0,123,255,0));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hero-image-container:hover::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .hero-image-container {
+                width: 100%;
+            }
+        }
+
+        .about-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .about-image-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            transition: all 0.5s ease;
+        }
+
+        .about-image-container:hover .about-image {
+            transform: scale(1.05);
+        }
+
+        .about-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,123,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .about-image-container:hover::before {
+            opacity: 1;
+        }
+
+        .about-content {
+            flex: 1;
+            padding-left: 60px;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .about-content:hover .about-title::after {
+            width: 100%;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .btn-read-more {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-read-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #007bff;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-read-more:hover {
+            color: white;
+        }
+
+        .btn-read-more:hover::before {
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+            }
+
+            .about-image-container {
+                margin-bottom: 40px;
+            }
+
+            .about-content {
+                padding-left: 0;
+            }
+        }
+
+        .pricing-section {
+            max-width: 1200px;
+            width: 100%;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .pricing-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .pricing-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            flex: 1;
+            min-width: 0; /* Allows flex items to shrink below their minimum content size */
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #ff3366, #ff9933, #33cc33, #3399ff);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            transform: rotate(45deg);
+        }
+
+        .pricing-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .pricing-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .pricing-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .pricing-card-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .pricing-card-features {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card-features li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .btn-buy {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-buy::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-buy:hover::after {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+
+        @media (max-width: 1100px) {
+            .pricing-cards {
+                flex-direction: column;
+            }
+            .pricing-card {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pricing-card {
+                width: 100%;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #222;
+            color: #fff;
+            padding: 50px 0;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .footer-column:hover .footer-title::after {
+            width: 100%;
+        }
+
+        .footer-content {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        .footer-subscribe input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .footer-subscribe button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-subscribe button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer-map {
+            width: 100%;
+            height: 150px;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-map:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .footer-column {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <img src="https://placeholder.com/80x80" alt="Logo" class="logo">
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Our Awesome Website</h1>
+            <p class="hero-description">Discover amazing features and services that will revolutionize your experience. Join us on this exciting journey!</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-secondary">View More</button>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://picsum.photos/600/400" alt="Hero Image" class="hero-image">
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-image-container">
+            <img src="https://picsum.photos/600/400?random=2" alt="About Us" class="about-image">
+        </div>
+        <div class="about-content">
+            <h2 class="about-title">About Us</h2>
+            <p class="about-description">We are a passionate team dedicated to creating innovative solutions that make a difference. Our mission is to empower individuals and businesses through cutting-edge technology and exceptional service.</p>
+            <button class="btn-read-more">Read More</button>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <h2 class="pricing-title">Choose Your Package</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <div class="pricing-card-content">
+                    <h3 class="pricing-card-title">Basic</h3>
+                    <div class="pricing-card-price">$19.99</div>
+                    <ul class="pricing-card-features">
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                    </ul>
+                    <button class="btn-buy">Buy Now</button>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-card-content">
+                    <h3 class="pricing-card-title">Pro</h3>
+                    <div class="pricing-card-price">$39.99</div>
+                    <ul class="pricing-card-features">
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                        <li>Feature 4</li>
+                    </ul>
+                    <button class="btn-buy">Buy Now</button>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-card-content">
+                    <h3 class="pricing-card-title">Business</h3>
+                    <div class="pricing-card-price">$79.99</div>
+                    <ul class="pricing-card-features">
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                        <li>Feature 4</li>
+                        <li>Feature 5</li>
+                    </ul>
+                    <button class="btn-buy">Buy Now</button>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-card-content">
+                    <h3 class="pricing-card-title">Enterprise</h3>
+                    <div class="pricing-card-price">$149.99</div>
+                    <ul class="pricing-card-features">
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                        <li>Feature 4</li>
+                        <li>Feature 5</li>
+                        <li>Feature 6</li>
+                    </ul>
+                    <button class="btn-buy">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="card">
+        <img src="https://picsum.photos/300/200" alt="Random image" class="card-image">
+        <div class="card-content">
+            <h2 class="card-title">Awesome Card</h2>
+            <p class="card-text">This is a stylish card with a hover effect. It demonstrates an awesome design that you can customize further.</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- ... existing content ... -->
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3 class="footer-title">Company Information</h3>
+                <div class="footer-content">
+                    <p>123 Main Street, City</p>
+                    <p>State, Country 12345</p>
+                    <p>Phone: (123) 456-7890</p>
+                    <p>Email: info@company.com</p>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Subscribe</h3>
+                <div class="footer-subscribe">
+                    <input type="email" placeholder="Enter your email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Location</h3>
+                <iframe class="footer-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1sen!2sus!4v1510579767645" allowfullscreen></iframe>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

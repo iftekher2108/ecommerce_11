@@ -22,43 +22,39 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
 	<!-- StyleSheet -->
-
+{{-- 
     @vite([
-        'public/scss/store.scss',
-        
-        // "store_assets/css/flex-slider.min.css",
-        // "store_assets/css/owl-carousel.css",
-        // "store_assets/css/slicknav.min.css",
-        // "store_assets/css/reset.css",
-        // "store_assets/css/responsive.css",
+        // 'public/scss/store.scss',
+
         // "store_assets/style.css"
-    ])
+    ]) --}}
 
 	<!-- Bootstrap -->
-	{{-- <link rel="stylesheet" href="{{ asset('store_assets/css/bootstrap.css') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('store_assets/css/bootstrap.css') }}">
 	<!-- Magnific Popup -->
-    {{-- <link rel="stylesheet" href="{{ asset('store_assets/css/magnific-popup.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/magnific-popup.min.css') }}">
 	<!-- Font Awesome -->
-    {{-- <link rel="stylesheet" href="{{ asset('store_assets/css/font-awesome.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/font-awesome.css') }}">
 	<!-- Fancybox -->
-	{{-- <link rel="stylesheet" href="{{ asset('store_assets/css/jquery.fancybox.min.css') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('store_assets/css/jquery.fancybox.min.css') }}">
 	<!-- Themify Icons -->
-    {{-- <link rel="stylesheet" href="{{ asset('store_assets/css/themify-icons.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/themify-icons.css') }}">
 	<!-- Nice Select CSS -->
-    {{-- <link rel="stylesheet" href="{{ asset('store_assets/css/niceselect.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/niceselect.css') }}">
 	<!-- Animate CSS -->
-    {{-- <link rel="stylesheet" href="{{ asset('store_assets/css/animate.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/animate.css') }}">
 	<!-- Flex Slider CSS -->
-    {{-- <link rel="stylesheet" href="{{ asset('') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/flex-slider.min.css') }}">
 	<!-- Owl Carousel -->
-    {{-- <link rel="stylesheet" href="{{ asset('') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/owl-carousel.css') }}">
 	<!-- Slicknav -->
-    {{-- <link rel="stylesheet" href="{{ asset('') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('store_assets/css/slicknav.min.css') }}">
 
 	<!-- Eshop StyleSheet -->
-	{{-- <link rel="stylesheet" href="{{ asset('') }}"> --}}
-	{{-- <link rel="stylesheet" href="{{ asset('store_assets/style.css') }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('store_assets/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('store_assets/css/responsive.css') }}">
+	<link rel="stylesheet" href="{{ asset('store_assets/style.css') }}">
+
 
 
 
