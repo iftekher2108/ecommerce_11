@@ -31,22 +31,29 @@
 
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Product</span>
+            <span class="menu-header-text">Product Catelog</span>
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>Product</div>
+                <div>Product Catelog</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="" class="menu-link">
-                        <div>Account</div>
+                        <div>Product</div>
                     </a>
                 </li>
+
                 <li class="menu-item">
                     <a href="" class="menu-link">
-                        <div>Notifications</div>
+                        <div>Brand</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="" class="menu-link">
+                        <div>Category</div>
                     </a>
                 </li>
 
