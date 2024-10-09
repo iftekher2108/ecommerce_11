@@ -24,10 +24,11 @@
     'public/admin_assets/css/demo.css',
     ]) --}}
 
-    <link rel="stylesheet" href="{{ asset('admin_assets/css/core.css',) }}">
-    <link rel="stylesheet" href="{{ asset('admin_assets/css/theme-default.css',) }}">
-    <link rel="stylesheet" href="{{ asset('admin_assets/css/fonts/boxicons.css',) }}">
-    <link rel="stylesheet" href="{{ asset('admin_assets/css/demo.css',) }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/core.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/theme-default.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugin/DataTables/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/fonts/boxicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/demo.css') }}">
 
 
 
@@ -55,6 +56,10 @@
                         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                             <i class="bx bx-menu bx-sm"></i>
                         </a>
+                    </div>
+
+                    <div class="ms-3 text-white">
+                        @yield('title')
                     </div>
 
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
@@ -218,6 +223,7 @@
 
     <script src="{{ asset('admin_assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('admin_assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/plugin/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/menu.js') }}"></script> --}}
 

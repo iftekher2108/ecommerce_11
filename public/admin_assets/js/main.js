@@ -25,8 +25,6 @@ $('.nav-panel-close').click(function(){
 
 
 
-
-
 })
 
 

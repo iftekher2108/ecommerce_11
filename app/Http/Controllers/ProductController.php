@@ -10,9 +10,9 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function product()
     {
-        //
+        return view('admin.product.index');
     }
 
     /**

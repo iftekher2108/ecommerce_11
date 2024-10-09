@@ -40,7 +40,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('product.index') }}" class="menu-link">
                         <div>Product</div>
                     </a>
                 </li>
