@@ -1,28 +1,29 @@
 @extends('layouts.app')
 @section('title','Product')
 @section('content')
-<h3></h3>
 <div class="d-flex justify-content-between mb-3">
 <a href="" class="btn btn-danger">Delete all</a>
-<a href="" class="btn btn-primary">Create</a>
+<a href="{{ route('product.create') }}" class="btn btn-primary">Create</a>
 </div>
 
 <div class="card">
 
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-          <table class="table table-bordered">
+          <table class="table normal-dt table-bordered">
             <thead>
               <tr class="bg-primary">
-                <th>Project</th>
-                <th>Client</th>
-                <th>Users</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th><input type="checkbox" class="form-check-input border border-black"></th>
+                <th class="text-white">Project</th>
+                <th class="text-white">Client</th>
+                <th class="text-white">Users</th>
+                <th class="text-white">Status</th>
+                <th class="text-white">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td><input type="checkbox" name="" id="" class="form-check-input"></td>
                 <td>
                   <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong>
                 </td>
@@ -78,6 +79,7 @@
               </tr>
 
               <tr>
+                <td><input type="checkbox" class="form-check-input border"></td>
                 <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
                 <td>Barry Hunter</td>
                 <td>

@@ -52,7 +52,7 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('category.index') }}" class="menu-link">
                         <div>Category</div>
                     </a>
                 </li>

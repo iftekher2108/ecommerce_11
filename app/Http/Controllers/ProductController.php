@@ -18,9 +18,9 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function product_create()
     {
-        //
+        return view('admin.product.create');
     }
 
     /**
