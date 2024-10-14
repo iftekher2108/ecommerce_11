@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -12,7 +14,8 @@ class CategoryController extends Controller
      */
     public function category()
     {
-        return view('admin.category.index');
+        $categories = Category::get();
+        return view('admin.category.index',compact('categories'));
     }
 
     /**
@@ -28,19 +31,25 @@ class CategoryController extends Controller
      */
     public function category_store(Request $request)
     {
-        $request->validate([
-            'image' => 'image|mimes:png,jpg|max:10000|nullable',
-            'name' => 'string|required',
+
+       $request->validate([
+            'image' => 'nullable',
+            'name' => 'required|unique:categories',
+            'status' => 'required'
         ]);
+
         $category = new Category;
         if(isset($request->image)) {
             $path = 'category';
-            $filename = $request->image->hashName().'.'. $request->image->extension();
+            $filename = time().'.'. $request->image->extension();
             $request->image->storeAs($path,$filename,'public');
-            $category->image = $request->image;
+            $category->image = $path.'/'.$filename;
         }
         $category->name = $request->name;
+        $category->slug = Str::of($request->name)->slug('-');
+        $category->status = $request->status;
         $category->save();
+
         return redirect()->route('category.index')->with("success","Category added successfully");
 
     }

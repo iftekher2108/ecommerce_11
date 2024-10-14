@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title','Category Create')
+@section('title','Brand Create')
 @section('content')
 
 <div class="row g-2">
-<form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
    <div class="col-md-6">
         <div class="card">
@@ -26,7 +26,7 @@
                       class="form-control @error('name') is-invalid @enderror"
                       id="name"
                       name="name"
-                      placeholder="Category"
+                      placeholder="brand"
                     />
                     @error('name')
                     <span class="text-danger">
@@ -51,18 +51,8 @@
 </form>
 
 
-
-
-    {{-- <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-
-            </div>
-        </div>
-    </div> --}}
-
 </div>
 
-
 @endsection
+
 

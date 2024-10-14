@@ -175,7 +175,7 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                         @if ($mas = session('success'))
-                        <div class="alert bg-primary text-white alert-dismissible" role="alert">
+                        <div class="alert bg-success text-white alert-dismissible" role="alert">
                             {{ $mas }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                           </div>

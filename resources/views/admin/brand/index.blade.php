@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','Category')
+@section('title','Brand')
 @section('content')
 
 <div class="d-flex justify-content-between mb-3">
     <a href="" class="btn btn-danger">Delete all</a>
-    <a href="{{ route('category.create') }}" class="btn btn-primary">Create</a>
+    <a href="{{ route('brand.create') }}" class="btn btn-primary">Create</a>
     </div>
 
     <div class="card">
@@ -24,14 +24,14 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($categories as $category)
+                    @foreach ($brands as $brand)
                     <tr>
-                    <td><input type="checkbox" value="{{ $category->id }}" class="form-check-input"></td>
+                    <td><input type="checkbox" value="{{ $brand->id }}" class="form-check-input"></td>
                     <td>
-                      <img src="{{ asset('storage/'.$category->image) }}" class="img-thumbnail" height="40" width="40" alt="Category">
+                      <img src="{{ asset('storage/'.$brand->image) }}" class="img-thumbnail" height="40" width="40" alt="Category">
                     </td>
-                    <td>{{ $category->name }}</td>
-                    <td><span class="badge {{ $category->status == 'active' ? "bg-success" : "bg-danger" }}  me-1">{{ $category->status }}</span></td>
+                    <td>{{ $brand->name }}</td>
+                    <td><span class="badge {{ $brand->status == 'active' ? "bg-success" : "bg-danger" }}  me-1">{{ $brand->status }}</span></td>
                     <td>
                       <a class="btn btn-success btn-sm me-1" href="javascript:void(0);">
                         <i class="bx bx-edit-alt me-1"></i>

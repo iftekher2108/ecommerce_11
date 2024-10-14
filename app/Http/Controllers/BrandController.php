@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -10,25 +11,45 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function brand()
     {
-        //
+        $brands = Brand::get();
+        return view('admin.brand.index',compact('brands'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function brand_create()
     {
-        //
+        return view('admin.brand.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function brand_store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'nullable',
+            'name' => 'required|unique:categories',
+            'status' => 'required'
+        ]);
+
+        $brand = new brand;
+        if(isset($request->image)) {
+            $path = 'brand';
+            $filename = time().'.'. $request->image->extension();
+            $request->image->storeAs($path,$filename,'public');
+            $brand->image = $path.'/'.$filename;
+        }
+        $brand->name = $request->name;
+        $brand->slug = Str::of($request->name)->slug('-');
+        $brand->status = $request->status;
+        $brand->save();
+
+        return redirect()->route('brand.index')->with("success","brand added successfully");
+
     }
 
     /**
