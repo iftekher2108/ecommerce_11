@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -20,15 +22,20 @@ class ProductController extends Controller
      */
     public function product_create()
     {
-        return view('admin.product.create');
+        $brands = Brand::where('status','active')->get(['id','name']);
+        $categories = Category::where('status','active')->get(['id','name']);
+        return view('admin.product.create',compact('brands','categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function product_store(Request $request)
     {
-        //
+        $request->validate([
+
+        ]);
+
     }
 
     /**

@@ -43,7 +43,7 @@ class BrandController extends Controller
             $request->image->storeAs($path,$filename,'public');
             $brand->image = $path.'/'.$filename;
         }
-        $brand->name = $request->name;
+        $brand->name = Str::title($request->name) ;
         $brand->slug = Str::of($request->name)->slug('-');
         $brand->status = $request->status;
         $brand->save();

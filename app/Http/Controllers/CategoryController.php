@@ -45,7 +45,7 @@ class CategoryController extends Controller
             $request->image->storeAs($path,$filename,'public');
             $category->image = $path.'/'.$filename;
         }
-        $category->name = $request->name;
+        $category->name =Str::title($request->name);
         $category->slug = Str::of($request->name)->slug('-');
         $category->status = $request->status;
         $category->save();

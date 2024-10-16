@@ -13,24 +13,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
 
-Route::controller(ProductController::class)->group(function(){
-    Route::get('product','product')->name('product.index');
-    Route::get('product/create','product_create')->name('product.create');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('product', 'product')->name('product.index');
+        Route::get('product/create', 'product_create')->name('product.create');
+    });
+
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('category', 'category')->name('category.index');
+        Route::get('category/create', 'category_create')->name('category.create');
+        Route::post('category/store', 'category_store')->name('category.store');
+    });
+
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('brand', 'brand')->name('brand.index');
+        Route::get('brand/create', 'brand_create')->name('brand.create');
+        Route::post('brand/store', 'brand_store')->name('brand.store');
+    });
 });
-
-Route::controller(CategoryController::class)->group(function(){
-    Route::get('category','category')->name('category.index');
-    Route::get('category/create','category_create')->name('category.create');
-    Route::post('category/store','category_store')->name('category.store');
-});
-
-Route::controller(BrandController::class)->group(function(){
-    Route::get('brand','brand')->name('brand.index');
-    Route::get('brand/create','brand_create')->name('brand.create');
-    Route::post('brand/store','brand_store')->name('brand.store');
-});
-
-
-

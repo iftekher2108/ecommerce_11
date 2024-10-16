@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('regular_price');
             $table->decimal('sale_price')->nullable();
             $table->string('sku');
-            $table->enum('stock_status',['In-Stock','Out-Of-Stock']);
+            $table->enum('stock_status',['in_stock','out_of_stock']);
             $table->unsignedBigInteger('quantity')->default(1);
             $table->string('image');
             $table->text('images');
