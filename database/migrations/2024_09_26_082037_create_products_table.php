@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('stock_status',['in_stock','out_of_stock']);
             $table->unsignedBigInteger('quantity')->default(1);
             $table->string('image');
-            $table->text('images');
+            $table->text('images')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

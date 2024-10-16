@@ -243,7 +243,7 @@
     <script src="{{ asset('admin_assets/plugin/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/menu.js') }}"></script> --}}
-
+    @stack('script')
 </body>
 
 </html>
