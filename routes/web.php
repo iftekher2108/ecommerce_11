@@ -11,14 +11,15 @@ Route::get('/', function () {
     return view('store.welcome');
 });
 
+Route::prefix('admin')->group(function(){
 Auth::routes();
-
 Route::middleware('auth')->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('product', 'product')->name('product.index');
+        Route::post('/tiny-mce-upload','tiny_mce_image_upload')->name('tiny_mce_image_upload');
         Route::get('product/create', 'product_create')->name('product.create');
     });
 
@@ -34,3 +35,5 @@ Route::middleware('auth')->group(function () {
         Route::post('brand/store', 'brand_store')->name('brand.store');
     });
 });
+});
+

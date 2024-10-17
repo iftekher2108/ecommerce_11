@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -72,7 +72,7 @@ class RegisterController extends Controller
 
         return User::create([
             'name' => $data['name'],
-            'picture' => "https://as2.ftcdn.net/v2/jpg/02/79/66/93/1000_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg",
+            'picture' => "iftekher mahmud.jpg",
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

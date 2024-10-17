@@ -25,6 +25,7 @@
                       type="text"
                       class="form-control @error('name') is-invalid @enderror"
                       id="name"
+                      value="{{ old('name') }}"
                       name="name"
                       placeholder="brand"
                     />

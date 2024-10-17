@@ -91,8 +91,8 @@
                                     <a class="nav-link d-flex align-items-center dropdown-toggle hide-arrow"
                                         href="javascript:void(0);" data-bs-toggle="dropdown">
                                         <div class="avatar avatar-online me-2">
-                                            <img src="{{ Auth::user()->picture }}" alt
-                                                class="w-px-40 h-auto rounded-circle" />
+                                            <img src="{{ Auth::user()->picture = null ? Auth::user()->picture : asset('admin_assets/image/avatar.png') }}"
+                                                alt class="w-px-40 h-auto rounded-circle" />
                                         </div>
 
                                         <div>
@@ -105,7 +105,7 @@
                                                 <div class="d-flex">
                                                     <div class="flex-shrink-0 me-3">
                                                         <div class="avatar avatar-online">
-                                                            <img src="{{ Auth::user()->picture }}" alt
+                                                            <img src="{{ Auth::user()->picture = null ? Auth::user()->picture : asset('admin_assets/image/avatar.png') }}" alt
                                                                 class="w-px-40 h-auto rounded-circle" />
                                                         </div>
                                                     </div>
@@ -119,12 +119,14 @@
                                         <li>
                                             <div class="dropdown-divider"></div>
                                         </li>
-                                        <li>
+
+                                        {{-- <li>
                                             <a class="dropdown-item" href="#">
                                                 <i class="bx bx-user me-2"></i>
                                                 <span class="align-middle">My Profile</span>
                                             </a>
-                                        </li>
+                                        </li> --}}
+
                                         <li>
                                             <a class="dropdown-item" href="#">
                                                 <i class="bx bx-cog me-2"></i>
@@ -175,17 +177,19 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                         @if ($mas = session('success'))
-                        <div class="alert bg-success text-white alert-dismissible" role="alert">
-                            {{ $mas }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                          </div>
+                            <div class="alert bg-success text-white alert-dismissible" role="alert">
+                                {{ $mas }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
 
                         @if ($mas = session('delete'))
-                        <div class="alert bg-danger text-white alert-dismissible" role="alert">
-                            {{ $mas }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                          </div>
+                            <div class="alert bg-danger text-white alert-dismissible" role="alert">
+                                {{ $mas }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
 
                         @yield('content')
@@ -240,6 +244,7 @@
 
     <script src="{{ asset('admin_assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('admin_assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/plugin/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('admin_assets/plugin/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/menu.js') }}"></script> --}}

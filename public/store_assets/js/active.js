@@ -32,6 +32,14 @@ Version:1.0
 =========================================*/
 (function($) {
     "use strict";
+    
+        // Global ajax setup
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
      $(document).on('ready', function() {
 
 		/*====================================

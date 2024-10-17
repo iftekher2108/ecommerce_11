@@ -26,6 +26,7 @@
                       class="form-control @error('name') is-invalid @enderror"
                       id="name"
                       name="name"
+                      value="{{ old('name') }}"
                       placeholder="Category"
                     />
                     @error('name')

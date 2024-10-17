@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('short_description');
-            $table->longText('description');
+            $table->string('short_description')->nullable();
+            $table->longText('description')->nullable();
             $table->decimal('regular_price');
             $table->decimal('sale_price')->nullable();
             $table->string('sku');
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->unsignedBigInteger('brand_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->enum('status',['active','inactive']);
             $table->timestamps();
         });
     }
