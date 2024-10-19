@@ -14,37 +14,23 @@
             <thead>
               <tr class="bg-primary">
                 <th><input type="checkbox" class="form-check-input border border-black"></th>
-                <th class="text-white">Project</th>
-                <th class="text-white">Client</th>
-                <th class="text-white">Users</th>
+                <th class="text-white">Picture</th>
+                <th class="text-white">Name</th>
+                {{-- <th class="text-white">Users</th> --}}
                 <th class="text-white">Status</th>
                 <th class="text-white">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+                @foreach ($products as $product)
+            <tr>
                 <td><input type="checkbox" name="" id="" class="form-check-input"></td>
                 <td>
-                  <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong>
+                <img src="{{ asset('storage/'.$product->image) }}" class="img-fluid" height="40" width="40" alt=""/>
                 </td>
-                <td>Albert Cook</td>
-                <td>
-                  <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                <td>{{ $product->name }}</td>
 
-                    <li
-                      data-bs-toggle="tooltip"
-                      data-popup="tooltip-custom"
-                      data-bs-placement="top"
-                      class="avatar avatar-xs pull-up"
-                      title="Lilian Fuller"
-                    >
-                      <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                    </li>
-
-                  </ul>
-                </td>
-
-                <td><span class="badge bg-label-primary me-1">Active</span></td>
+                <td><span class="badge  {{ $product->status == 'active' ? "bg-success" : "bg-danger" }} me-1">{{ $product->status }}</span></td>
 
                 <td>
                   {{-- <div class="dropdown">
@@ -77,47 +63,7 @@
 
                 </td>
               </tr>
-
-              <tr>
-                <td><input type="checkbox" class="form-check-input border"></td>
-                <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
-                <td>Barry Hunter</td>
-                <td>
-                  <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                    <li
-                      data-bs-toggle="tooltip"
-                      data-popup="tooltip-custom"
-                      data-bs-placement="top"
-                      class="avatar avatar-xs pull-up"
-                      title="Lilian Fuller"
-                    >
-                      <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                    </li>
-
-                  </ul>
-                </td>
-                <td><span class="badge bg-label-success me-1">Completed</span></td>
-                <td>
-                  <div class="dropdown">
-                    <button
-                      type="button"
-                      class="btn p-0 dropdown-toggle hide-arrow"
-                      data-bs-toggle="dropdown"
-                    >
-                      <i class="bx bx-dots-vertical-rounded"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="javascript:void(0);"
-                        ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                      >
-                      <a class="dropdown-item" href="javascript:void(0);"
-                        ><i class="bx bx-trash me-1"></i> Delete</a
-                      >
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
+                @endforeach
 
 
 

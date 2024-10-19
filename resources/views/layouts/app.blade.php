@@ -209,7 +209,7 @@
 
                             </div>
                             <div class="d-flex gap-4 align-items-center justify-content-between">
-                                <p>{{ round(microtime(true) - LARAVEL_START, 4) }} secounds</p>
+                                <p>Rendered in {{ round((microtime(true) - LARAVEL_START) * 1000) }}ms</p>
 
                             </div>
 
@@ -248,7 +248,7 @@
     <script src="{{ asset('admin_assets/plugin/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/menu.js') }}"></script> --}}
-    @stack('script')
+    @yield('script')
 </body>
 
 </html>

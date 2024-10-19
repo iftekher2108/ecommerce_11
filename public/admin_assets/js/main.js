@@ -119,9 +119,9 @@ $('.normal-dt').DataTable({
 
 
 // text Editor settings
-function tinymceEditor(route) {
 tinymce.init({
     selector: 'textarea.tinymce',
+    license_key: 'gpl',
     plugins: 'preview importcss searchreplace autolink autosave directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount charmap quickbars emoticons accordion',
     editimage_cors_hosts: ['picsum.photos'],
     menubar: 'file edit view insert format tools table ',
@@ -172,11 +172,9 @@ tinymce.init({
     importcss_append: true,
     image_title: true,
     automatic_uploads: true,
-    images_upload_url: `${route}`,
+    images_upload_url: '/api/text-editor-upload',
     file_picker_types: 'image',
     file_picker_callback: (cb, value, meta) => {
-        /* Provide file and text for the link dialog */
-
         var input = document.createElement('input');
         input.setAttribute('type', 'file');
         input.setAttribute('accept', 'image/*');
@@ -192,38 +190,43 @@ tinymce.init({
                 var blobInfo = blobCache.create(id, file, base64);
                 blobCache.add(blobInfo);
 
-                // call the callback and populate the Title field with the file name
-                cb(blobInfo.blobUri(), {
-                    title: file.name
-                });
+                // Call the callback to populate the Title field with the file name
+                cb(blobInfo.blobUri(), { title: file.name });
             };
             reader.readAsDataURL(file);
         };
 
         input.click();
-
-
-        // if (meta.filetype === 'file') {
-        //     callback('https://www.google.com/logos/google.jpg', {
-        //         text: 'My text'
-        //     });
-        // }
-
-        /* Provide image and alt text for the image dialog */
-        // if (meta.filetype === 'image') {
-        //     callback('https://www.google.com/logos/google.jpg', {
-        //         alt: 'My alt text'
-        //     });
-        // }
-
-        /* Provide alternative source and posted for the media dialog */
-        // if (meta.filetype === 'media') {
-        //     callback('movie.mp4', {
-        //         source2: 'alt.ogg',
-        //         poster: 'https://www.google.com/logos/google.jpg'
-        //     });
-        // }
     },
+    //   // Image upload handler
+    //   images_upload_handler: function (blobInfo, success, failure) {
+    //     var formData = new FormData();
+    //     formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+    //     fetch('/admin/text-editor-upload', {
+    //         method: 'POST',
+    //         headers: {
+    //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), // Include CSRF token
+    //         },
+    //         body: formData
+    //     })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+    //         return response.json(); // Parse the JSON response
+    //     })
+    //     .then(json => {
+    //         if (!json || typeof json.location !== 'string') {
+    //             failure('Invalid JSON response');
+    //             return;
+    //         }
+    //         success(json.location); // Return the URL of the uploaded image
+    //     })
+    //     .catch(error => {
+    //         failure('Image upload failed: ' + error.message);
+    //     });
+    // },
     height: 600,
     highlight_on_focus: false,
     image_caption: true,
@@ -236,10 +239,8 @@ tinymce.init({
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 });
 
-}
-
-
 // text Editor settings
+
 
 
 

@@ -11,6 +11,8 @@ Route::get('/', function () {
     return view('store.welcome');
 });
 
+
+
 Route::prefix('admin')->group(function(){
 Auth::routes();
 Route::middleware('auth')->group(function () {
@@ -19,8 +21,8 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('product', 'product')->name('product.index');
-        Route::post('/tiny-mce-upload','tiny_mce_image_upload')->name('tiny_mce_image_upload');
         Route::get('product/create', 'product_create')->name('product.create');
+        Route::post('product/store','product_store')->name('product.store');
     });
 
     Route::controller(CategoryController::class)->group(function () {
