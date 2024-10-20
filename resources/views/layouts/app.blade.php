@@ -41,7 +41,7 @@
         <div class="layout-container">
             @auth
                 <!-- Menu -->
-                <x-nav_panel />
+                <x-admin.nav_panel />
                 <!-- / Menu -->
             @endauth
 

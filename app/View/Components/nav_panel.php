@@ -21,6 +21,6 @@ class nav_panel extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.nav_panel');
+        return view('components.admin.nav_panel');
     }
 }

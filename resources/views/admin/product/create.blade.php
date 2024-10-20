@@ -152,8 +152,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="sale_price" class="form-label">Sale Price <span
-                                            class="text-danger">*</span></label>
+                                    <label for="sale_price" class="form-label">Sale Price</label>
                                     <input id="sale_price" value="{{ old('sale_price') }}" class="form-control @error('sale_price') is-invalid @enderror" name="sale_price" type="number" min="0"
                                         placeholder="Sale Price" />
                                         @error('sale_price')

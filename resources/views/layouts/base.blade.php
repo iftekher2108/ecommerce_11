@@ -4,17 +4,12 @@
 	<!-- Meta Tag -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name='copyright' content=''>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }} - @yield('title')</title>
-    <!-- Title Tag  -->
-    <title>Eshop - eCommerce Template.</title>
-
+    @yield('head')
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="images/favicon.png">
@@ -22,7 +17,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
 	<!-- StyleSheet -->
-{{-- 
+{{--
     @vite([
         // 'public/scss/store.scss',
 
@@ -49,6 +44,9 @@
     <link rel="stylesheet" href="{{ asset('store_assets/css/owl-carousel.css') }}">
 	<!-- Slicknav -->
     <link rel="stylesheet" href="{{ asset('store_assets/css/slicknav.min.css') }}">
+
+    <!-- Jquery Ui -->
+    <link rel="stylesheet" href="{{ asset('store_assets/css/jquery-ui.css') }}">
 
 	<!-- Eshop StyleSheet -->
 	<link rel="stylesheet" href="{{ asset('store_assets/css/reset.css') }}">
@@ -196,7 +194,8 @@
 			<div class="container">
 				<div class="cat-nav-head">
 					<div class="row">
-						<div class="col-lg-3">
+                        @if (Request::routeIs('home.index'))
+                        <div class="col-lg-3">
 							<div class="all-category">
 								<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
 								<ul class="main-category">
@@ -264,6 +263,9 @@
 								</ul>
 							</div>
 						</div>
+                        @endif
+
+
 						<div class="col-lg-9 col-12">
 							<div class="menu-area">
 								<!-- Main Menu -->
@@ -271,17 +273,19 @@
 									<div class="navbar-collapse">
 										<div class="nav-inner">
 											<ul class="nav main-menu menu navbar-nav">
-													<li class="active"><a href="#">Home</a></li>
+													<li class="{{ Request::routeIs('home.index') ? 'active' : '' }}"><a href="{{ route('home.index') }}">Home</a></li>
 													<li><a href="#">Product</a></li>
-													<li><a href="#">Service</a></li>
-													<li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
-														<ul class="dropdown">
+													{{-- <li><a href="#">Service</a></li> --}}
+													<li class="{{ Request::routeIs('shop.index') ? 'active' : '' }}"><a href="{{ route('shop.index') }}">Shop
+                                                        {{-- <i class="ti-angle-down"></i> --}}
+                                                    </a>
+														{{-- <ul class="dropdown">
 															<li><a href="shop-grid.html">Shop Grid</a></li>
 															<li><a href="cart.html">Cart</a></li>
 															<li><a href="checkout.html">Checkout</a></li>
-														</ul>
+														</ul> --}}
 													</li>
-													<li><a href="#">Pages</a></li>
+													{{-- <li><a href="#">Pages</a></li> --}}
 													<li><a href="#">Blog<i class="ti-angle-down"></i></a>
 														<ul class="dropdown">
 															<li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>

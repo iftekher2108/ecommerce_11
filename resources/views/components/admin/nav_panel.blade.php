@@ -22,8 +22,8 @@
     <ul class="menu-inner py-1 bg-dark">
 
         <!-- Dashboard -->
-        <li class="menu-item {{ Request::is('home') ? 'active' : '' }}">
-            <a href="{{ route('home') }}" class="menu-link">
+        <li class="menu-item {{ Request::routeIs('dashboard') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div>Dashboard</div>
             </a>
@@ -39,19 +39,19 @@
                 <div>Product Catelog</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ Request::routeIs('product.index') ? 'active' : '' }}">
                     <a href="{{ route('product.index') }}" class="menu-link">
                         <div>Product</div>
                     </a>
                 </li>
 
-                <li class="menu-item">
+                <li class="menu-item {{ Request::routeIs('brand.index') ? 'active' : '' }}">
                     <a href="{{ route('brand.index') }}" class="menu-link">
                         <div>Brand</div>
                     </a>
                 </li>
 
-                <li class="menu-item">
+                <li class="menu-item {{ Request::routeIs('category.index') ? 'active' : '' }}">
                     <a href="{{ route('category.index') }}" class="menu-link">
                         <div>Category</div>
                     </a>
