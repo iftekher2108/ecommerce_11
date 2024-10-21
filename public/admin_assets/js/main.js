@@ -9,9 +9,8 @@
     });
 
 
-
+// document on load request
 $(document).ready(function() {
-
 
 $('.menu-toggle').click(function(){
     $(this).siblings('.menu-sub').slideToggle(200)
@@ -37,9 +36,6 @@ $('.preview-img').click(function(){
 })
 
 // preview image
-
-})
-
 // data table
 $('.advance-dt').DataTable({
     responsive: true,
@@ -116,6 +112,15 @@ $('.normal-dt').DataTable({
     stateSave: true,
 });
 // normal data table
+
+
+
+
+
+
+})
+// document on load request
+
 
 
 // text Editor settings

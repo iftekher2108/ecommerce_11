@@ -16,12 +16,9 @@
 	<!-- Web Font -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
-	<!-- StyleSheet -->
 {{--
     @vite([
-        // 'public/scss/store.scss',
-
-        // "store_assets/style.css"
+        // 'public/scss/store.scss', // "store_assets/style.css"
     ]) --}}
 
 	<!-- Bootstrap -->
@@ -44,16 +41,12 @@
     <link rel="stylesheet" href="{{ asset('store_assets/css/owl-carousel.css') }}">
 	<!-- Slicknav -->
     <link rel="stylesheet" href="{{ asset('store_assets/css/slicknav.min.css') }}">
-
     <!-- Jquery Ui -->
     <link rel="stylesheet" href="{{ asset('store_assets/css/jquery-ui.css') }}">
-
 	<!-- Eshop StyleSheet -->
 	<link rel="stylesheet" href="{{ asset('store_assets/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('store_assets/css/responsive.css') }}">
 	<link rel="stylesheet" href="{{ asset('store_assets/style.css') }}">
-
-
 
 
 </head>
@@ -69,7 +62,6 @@
 		</div>
 	</div>
 	<!-- End Preloader -->
-
 
 	<!-- Header -->
 	<header class="header shop">
@@ -199,7 +191,13 @@
 							<div class="all-category">
 								<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
 								<ul class="main-category">
-									<li><a href="#">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                                    @foreach ($categories as $category )
+                                        <li><a href="#">{{ $category->name }}</a></li>
+                                    @endforeach
+
+
+									{{-- <li><a href="#">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 										<ul class="sub-category">
 											<li><a href="#">accessories</a></li>
 											<li><a href="#">best selling</a></li>
@@ -259,7 +257,7 @@
 									<li><a href="#">man’s product</a></li>
 									<li><a href="#">ladies</a></li>
 									<li><a href="#">westrn dress</a></li>
-									<li><a href="#">denim </a></li>
+									<li><a href="#">denim </a></li> --}}
 								</ul>
 							</div>
 						</div>
@@ -437,6 +435,7 @@
 	<script src="{{ asset('store_assets/js/easing.js') }}"></script>
 	<!-- Active JS -->
 	<script src="{{ asset('store_assets/js/active.js') }}"></script>
+    @yield('script')
 </body>
 </html>
 

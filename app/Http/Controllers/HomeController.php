@@ -2,35 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-use function Termwind\render;
-
-class ShopController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function shop_index()
+    public function index()
     {
-        $categories = Category::where('status','active')->get(['name','slug']);
-        $products = Product::where('status','active')->get();
-        return view('store.shop',compact('categories','products'));
+        $products = Product::where('status', 'active');
+        return view('store.index',compact('products'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function quick_shop_preview(Request $request)
+    public function create()
     {
-        $product = Product::with('category', 'brand')->find($request->id);
-
-        $product_model = view('components.store.product-model',compact('product'))->render();
-
-        return response()->json(['product_model' => $product_model]);
-
+        //
     }
 
     /**

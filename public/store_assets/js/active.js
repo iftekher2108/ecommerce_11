@@ -1,38 +1,5 @@
-/* =====================================
-Template Name: Eshop
-Author Name: Naimur Rahman
-Author URI: http://www.wpthemesgrid.com/
-Description: Eshop - eCommerce HTML5 Template.
-Version:1.0
-========================================*/
-/*=======================================
-[Start Activation Code]
-=========================================
-	01. Mobile Menu JS
-	02. Sticky Header JS
-	03. Search JS
-	04. Slider Range JS
-	05. Home Slider JS
-	06. Popular Slider JS
-	07. Quick View Slider JS
-	08. Home Slider 4 JS
-	09. CountDown
-	10. Flex Slider JS
-	11. Cart Plus Minus Button
-	12. Checkbox JS
-	13. Extra Scroll JS
-	14. Product page Quantity Counter
-	15. Video Popup JS
-	16. Scroll UP JS
-	17. Nice Select JS
-	18. Others JS
-	19. Preloader JS
-=========================================
-[End Activation Code]
-=========================================*/
-(function($) {
-    "use strict";
-    
+
+
         // Global ajax setup
         $.ajaxSetup({
             headers: {
@@ -158,21 +125,6 @@ Version:1.0
 			}
 		});
 
-		/*===========================
-		  Quick View Slider JS
-		=============================*/
-		$('.quickview-slider-active').owlCarousel({
-			items:1,
-			autoplay:true,
-			autoplayTimeout:5000,
-			smartSpeed: 400,
-			autoplayHoverPause:true,
-			nav:true,
-			loop:true,
-			merge:true,
-			dots:false,
-			navText: ['<i class=" ti-arrow-left"></i>', '<i class=" ti-arrow-right"></i>'],
-		});
 
 		/*===========================
 		  Home Slider 4 JS
@@ -268,7 +220,7 @@ Version:1.0
 				$qty.val(currentVal + 1);
 			}
 		});
-		$('.qty-box .quantity-left-minus').on('click', function () {
+		$('.qty-box .quantity-left-minus',).on('click',function () {
 			var $qty = $('.qty-box .input-number');
 			var currentVal = parseInt($qty.val(), 10);
 			if (!isNaN(currentVal) && currentVal > 1) {
@@ -331,4 +283,23 @@ Version:1.0
 	} );
 
 
-})(jQuery);
+    function quick_shop(id){
+
+        $.ajax({
+            type: "post",
+            url: "quick-shop-preview",
+            data:{
+                id:id
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $('.modal .modal-body').empty();
+                console.log(response);
+                $('.modal .modal-body').html(response.product_model)
+
+            }
+        });
+    }
+
+
