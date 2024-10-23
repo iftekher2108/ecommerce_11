@@ -14,12 +14,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Iftekher Mahmud Pervez',
-            'email' => 'iftekhermahmud@gmail.com',
-            'password' => Hash::make('21082002')
-        ]);
+        
+        // $this->run([
+        //     RolePermissionSeeder::class,
+        // ]);
+
+        // if (User::where('email', 'iftekhermahmud@gmail.com')->first()) {
+        //     $super_admin = User::factory()->create([
+        //         'name' => 'Iftekher Mahmud Pervez',
+        //         'email' => 'iftekhermahmud@gmail.com',
+        //         'password' => Hash::make('21082002')
+        //     ]);
+        //     $super_admin->syncRoles('super admin');
+        // }
+
+        // if (User::where('email', 'parvezkhan@gmail.com')->first()) {
+        //     $admin = User::factory()->create([
+        //         'name' => 'Iftekher Mahmud',
+        //         'email' => 'parvezkhan@gmail.com',
+        //         'password' => Hash::make('21082002')
+        //     ]);
+        //     $admin->syncRoles('admin');
+        // }
+
+        // if (User::where('email', 'parvez@gmail.com')->first()) {
+
+        //     $user = User::factory()->create([
+        //         'name' => 'Iftekher Mahmud',
+        //         'email' => 'parvez@gmail.com',
+        //         'password' => Hash::make('21082002')
+        //     ]);
+        //     $user->syncRoles('user');
+        // }
     }
 }
