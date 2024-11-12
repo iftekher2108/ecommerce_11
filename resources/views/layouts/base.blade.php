@@ -122,17 +122,23 @@
 					<div class="col-lg-8 col-md-7 col-12">
 						<div class="search-bar-top">
 							<div class="search-bar">
-								<select>
-									<option selected="selected">All Category</option>
-									<option>watch</option>
-									<option>mobile</option>
-									<option>kid’s item</option>
+                                <form action="" method="GET" class="d-flex">
+									<div>
+								<select name="category">
+									<option value="all" selected>All Category</option>
+                                    @foreach ($categories as $category )
+                                        <option value="{{ $category->name }}">{{$category->name}}</option>
+                                    @endforeach
 								</select>
-								<form>
+									</div>
+
+									<div>
 									<input name="search" placeholder="Search Products Here....." type="search">
 									<button class="btnn"><i class="ti-search"></i></button>
+									</div>
 								</form>
 							</div>
+
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-3 col-12">
@@ -193,7 +199,7 @@
 								<ul class="main-category">
 
                                     @foreach ($categories as $category )
-                                        <li><a href="#">{{ $category->name }}</a></li>
+                                        <li><a href="{{ route('category.search',$category->slug) }}">{{ $category->name }}</a></li>
                                     @endforeach
 
 
@@ -272,7 +278,7 @@
 										<div class="nav-inner">
 											<ul class="nav main-menu menu navbar-nav">
 													<li class="{{ Request::routeIs('home.index') ? 'active' : '' }}"><a href="{{ route('home.index') }}">Home</a></li>
-													<li><a href="#">Product</a></li>
+													{{-- <li><a href="#">Product</a></li> --}}
 													{{-- <li><a href="#">Service</a></li> --}}
 													<li class="{{ Request::routeIs('shop.index') ? 'active' : '' }}"><a href="{{ route('shop.index') }}">Shop
                                                         {{-- <i class="ti-angle-down"></i> --}}

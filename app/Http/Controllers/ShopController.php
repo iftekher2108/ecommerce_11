@@ -16,7 +16,7 @@ class ShopController extends Controller
     public function shop_index()
     {
         $categories = Category::where('status','active')->get(['name','slug']);
-        $products = Product::where('status','active')->get();
+        $products = Product::where('status','active')->paginate(9);
         return view('store.shop',compact('categories','products'));
     }
 

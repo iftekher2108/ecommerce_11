@@ -51,7 +51,7 @@
                     </div>
                   </div> --}}
 
-                  <a class="btn btn-success btn-sm" href="javascript:void(0);">
+                  <a class="btn btn-success btn-sm" href="{{ route('product.edit',$product->id) }}">
                     <i class="bx bx-edit-alt me-1"></i>
                      Edit
                     </a>

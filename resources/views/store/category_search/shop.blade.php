@@ -31,7 +31,7 @@
                             <h3 class="title">Categories</h3>
                             <ul class="categor-list">
                                 @foreach ($categories as $category)
-                                    <li><a href="{{ route('category.search',$category->slug) }}">{{ $category->name }}</a></li>
+                                    <li><a href="{{ route('category.search',$category->slug ) }}">{{ $category->name }}</a></li>
                                 @endforeach
 
                                 {{-- <li><a href="#">jacket</a></li>
@@ -52,7 +52,7 @@
                                     <div id="slider-range"></div>
                                     <div class="price_slider_amount">
                                         <div class="label-input">
-                                            <span>Range:</span><input type="text"  id="amount" name="price"
+                                            <span>Range:</span><input type="text" id="amount" name="price"
                                                 placeholder="Add Your Price" />
                                         </div>
                                     </div>
@@ -187,20 +187,20 @@
 
                     <div class="row">
 
-                        @forelse ($products as $product)
+                        @forelse ($search_category->product as $item)
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="single-product border p-2">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img class="default-img" src="{{ asset('storage/' . $product->image) }}"
+                                            <img class="default-img" src="{{ asset('storage/' . $item->image) }}"
                                                 alt="#">
-                                            <img class="hover-img" src="{{ asset('storage/' . $product->image) }}"
+                                            <img class="hover-img" src="{{ asset('storage/' . $item->image) }}"
                                                 alt="#">
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#exampleModal"
-                                                    onclick="quick_shop('{{ $product->id }}','{{ url('quick-shop-preview') }}')" title="Quick View"
+                                                    onclick="quick_shop('{{ $item->id }}','{{ url('quick-shop-preview') }}')" title="Quick View"
                                                     href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 <a title="Wishlist" class="mr-2" href="#"><i
                                                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
@@ -212,13 +212,13 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="product-details.html">{{ $product->name }}</a></h3>
+                                        <h3><a href="product-details.html">{{ $item->name }}</a></h3>
                                         <div class="product-price">
-                                            @if ($product->sale_price > 0 || $product->sale_price != null)
-                                                <span class="old">{{ $product->regular_price }} ৳</span>
-                                                <span>{{ $product->sale_price }} ৳</span>
+                                            @if ($item->sale_price > 0 || $item->sale_price != null)
+                                                <span class="old">{{ $item->regular_price }} ৳</span>
+                                                <span>{{ $item->sale_price }} ৳</span>
                                             @else
-                                                <span>{{ $product->regular_price }} ৳</span>
+                                                <span>{{ $item->regular_price }} ৳</span>
                                             @endif
 
                                         </div>
@@ -226,6 +226,9 @@
                                 </div>
                             </div>
                         @empty
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h2>No Product found</h2>
+                            </div>
                         @endforelse
 
 
@@ -268,9 +271,9 @@
 
                     </div>
 
-                    <div>
-                        {{ $products->links() }}
-                    </div>
+                    {{-- <div>
+                        {{ $search_category->product->links() }}
+                    </div> --}}
 
                 </div>
             </div>
@@ -301,7 +304,6 @@
     </section>
     <!-- End Shop Newsletter -->
 
-    {{  DB::table('products')->max('regular_price') }}
 
 
     <!-- Modal -->
@@ -321,7 +323,6 @@
     <!-- Modal end -->
 @endsection
 
-
 @section('script')
 <script>
           $( "#slider-range" ).slider({
@@ -337,5 +338,3 @@
 			  " - ৳" + $( "#slider-range" ).slider( "values", 1 ) );
 </script>
 @endsection
-
-

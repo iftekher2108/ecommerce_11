@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Product Create')
+@section('title', 'Product Update')
 @section('content')
 
 @if ($errors->any())
@@ -12,7 +12,7 @@
     </div>
 @endif
 
-    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row g-2">
 
@@ -43,7 +43,7 @@
                         <div class="mb-3">
                             <label for="title" class="form-label">Product Title <span class="text-danger">*</span></label>
                             <input id="title" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name') }}" name="name" type="text" placeholder="title" />
+                                value="{{ old('name',$product->name) }}" name="name" type="text" placeholder="title" />
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -54,7 +54,7 @@
                         <div class="mb-3">
                             <label for="short_description" class="form-label">Short Description</label>
                             <textarea class="form-control @error('short_description') is-invalid @enderror" placeholder="Short Description"
-                                name="short_description" id="short_description" rows="6">{{ old('short_description') }}</textarea>
+                                name="short_description" id="short_description" rows="6">{{ old('short_description',$product->short_description) }}</textarea>
                             @error('short_description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -101,7 +101,7 @@
 
                         <div class="mb-3">
                             <label for="sku" class="form-label">SKU Code <span class="text-danger">*</span></label>
-                            <input id="sku" name="sku" value="{{ old('sku') }}" class="form-control @error('sku') is-invalid @enderror"
+                            <input id="sku" name="sku" value="{{ old('sku',$product->sku) }}" class="form-control @error('sku') is-invalid @enderror"
                                 type="text" placeholder="SKU" />
                             @error('sku')
                                 <span class="text-danger">{{ $message }}</span>
@@ -126,7 +126,7 @@
                                 <div class="mb-3">
                                     <label for="quantity" class="form-label">Quantity <span
                                             class="text-danger">*</span></label>
-                                    <input id="quantity" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity') }}" type="number" min="0"
+                                    <input id="quantity" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity',$product->quantity) }}" type="number" min="0"
                                         placeholder="1" />
                                         @error('quantity')
                                         <span class="text-danger">{{ $message }}</span>
@@ -143,7 +143,7 @@
                                 <div class="mb-3">
                                     <label for="regular_price" class="form-label">Regular Price <span
                                             class="text-danger">*</span></label>
-                                    <input type="number" id="regular_price" placeholder="Regular Price" name="regular_price" value="{{ old('regular_price') }}" class="form-control @error('regular_price') is-invalid @enderror" min="0" >
+                                    <input type="number" id="regular_price" placeholder="Regular Price" name="regular_price" value="{{ old('regular_price',$product->regular_price) }}" class="form-control @error('regular_price') is-invalid @enderror" min="0" >
                                     @error('regular_price')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -153,7 +153,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="sale_price" class="form-label">Sale Price</label>
-                                    <input id="sale_price" value="{{ old('sale_price') }}" class="form-control @error('sale_price') is-invalid @enderror" name="sale_price" type="number" min="0"
+                                    <input id="sale_price" value="{{ old('sale_price',$product->sale_price) }}" class="form-control @error('sale_price') is-invalid @enderror" name="sale_price" type="number" min="0"
                                         placeholder="Sale Price" />
                                         @error('sale_price')
                                         <span class="text-danger">{{ $message }}</span>
@@ -177,7 +177,7 @@
                         <div class="mb-3">
                             <label for="image" class="form-label">Product Image <span
                                     class="text-danger">*</span></label><br>
-                            <img src="{{ asset('admin_assets/image/preview.png') }}" height="120"
+                            <img src="{{ asset('storage/'.$product->image) }}" height="120"
                                 class="preview-img rounded border shadow" alt="preview picture">
                             <input type="file" id="image" accept="image/*" name="image" hidden
                                 class="form-control input-image" /> <br>
@@ -197,6 +197,14 @@
                             <hr>
 
                             <div class="product-images d-flex flex-wrap gap-2 my-3">
+                                @php
+                                    $images = explode(',',$product->images)
+                                @endphp
+                                @foreach ($images as $image )
+                                    <img src="{{ asset('storage/'.$image) }}" class="rounded border shadow"
+                                    style="height: 70px; width:70px;" alt="preview picture" />
+                                @endforeach
+
                             </div>
 
                         </div>
@@ -214,7 +222,7 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Description <span
                                     class="text-danger">*</span></label>
-                            <textarea class="tinymce form-control" name="description" placeholder="Description" id="description" rows="3">{{ old('description') }}</textarea>
+                            <textarea class="tinymce form-control" name="description" placeholder="Description" id="description" rows="3">{{ old('description',$product->description) }}</textarea>
                         </div>
                     </div>
 

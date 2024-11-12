@@ -18,6 +18,8 @@ Route::prefix('admin')->group(function(){
             Route::get('product', 'product')->name('product.index');
             Route::get('product/create', 'product_create')->name('product.create');
             Route::post('product/store','product_store')->name('product.store');
+            Route::get('product/{id}/edit', 'product_edit')->name('product.edit');
+            Route::post('product/{id}/update', 'product_update')->name('product.update');
         });
 
         Route::controller(CategoryController::class)->group(function () {

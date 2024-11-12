@@ -1904,7 +1904,7 @@
                                     </a>
                                     <div class="button-head">
                                         <div class="product-action">
-                                            <a data-toggle="modal" onclick="quick_shop('{{ $product->id }}')"
+                                            <a data-toggle="modal" onclick="quick_shop('{{ $product->id }}','{{ route('quick.shop.preview') }}')"
                                                 data-target="#exampleModal" title="Quick View" href="#"><i
                                                     class=" ti-eye"></i><span>Quick Shop</span></a>
                                             <a title="Wishlist" class="mr-3" href="#"><i
@@ -1991,7 +1991,7 @@
             <div class="row">
 
 
-                        @forelse ($products->get() as $product)
+                        @forelse ($products->take(8)->get() as $product)
                     <div class="col-lg-3 col-md-4">
                             <!-- Start Single Product -->
                             <div class="single-product">
@@ -2004,7 +2004,7 @@
                                     </a>
                                     <div class="button-head">
                                         <div class="product-action">
-                                            <a data-toggle="modal" onclick="quick_shop('{{ $product->id }}')" data-target="#exampleModal" title="Quick View"
+                                            <a data-toggle="modal" onclick="quick_shop('{{ $product->id }}','{{ route('quick.shop.preview') }}')" data-target="#exampleModal" title="Quick View"
                                                 href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                             <a title="Wishlist" class="mr-3" href="#"><i
                                                     class=" ti-heart "></i><span>Add to
@@ -2035,8 +2035,10 @@
 
                         @endforelse
 
+            </div>
 
-
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="{{ route('shop.index') }}" class="btn text-white btn-primary">See More</a>
             </div>
         </div>
     </div>
@@ -2367,6 +2369,8 @@
 
 
 @endsection
+
+
 
 {{--    @if (Route::has('login'))
                         <nav class="-mx-3 flex flex-1 justify-end">

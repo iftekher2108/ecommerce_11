@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,11 @@ class HomeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function category_search($slug)
     {
-        //
+        $categories = Category::where('status', 'active')->get(['name','slug']);
+        $search_category = Category::with('product')->where('slug',$slug)->first();
+        return view('store.category_search.shop',compact('search_category','categories'));
     }
 
     /**
