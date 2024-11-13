@@ -301,9 +301,7 @@
     </section>
     <!-- End Shop Newsletter -->
 
-    {{  DB::table('products')->max('regular_price') }}
-
-
+    
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
