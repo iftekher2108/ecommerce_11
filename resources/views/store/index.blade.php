@@ -1892,11 +1892,11 @@
                 <div class="col-12">
                     <div class="owl-carousel popular-slider">
 
-                        @forelse ($products->orderBy('created_at','desc')->take(6)->get() as $product)
+                        @forelse ($products->take(8) as $product)
                             <!-- Start Single Product -->
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="{{ route('product.detail',$product->slug) }}">
                                         <img class="default-img" src="{{ asset('storage/' . $product->image) }}"
                                             alt="#">
                                         <img class="hover-img" src="{{ asset('storage/' . $product->image) }}" alt="#">
@@ -1919,7 +1919,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">{{ $product->name }}</a></h3>
+                                    <h3><a href="{{ route('product.detail',$product->slug) }}">{{ $product->name }}</a></h3>
                                     <div class="product-price">
                                         @if ($product->sale_price > 0 || $product->sale_price != null)
                                             <span class="old">{{ $product->regular_price }} ৳</span>
@@ -1991,12 +1991,12 @@
             <div class="row">
 
 
-                        @forelse ($products->take(8)->get() as $product)
+                    @forelse ($products->take(8) as $product)
                     <div class="col-lg-3 col-md-4">
                             <!-- Start Single Product -->
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="{{ route('product.detail',$product->slug) }}">
                                         <img class="default-img" src="{{ asset('storage/' . $product->image) }}"
                                             alt="#">
                                         <img class="hover-img" src="{{ asset('storage/' . $product->image) }}" alt="#">
@@ -2018,7 +2018,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">{{ $product->name }}</a></h3>
+                                    <h3><a href="{{ route('product.detail',$product->slug) }}">{{ $product->name }}</a></h3>
                                     <div class="product-price">
                                         @if ($product->sale_price > 0 || $product->sale_price != null)
                                             <span class="old">{{ $product->regular_price }} ৳</span>

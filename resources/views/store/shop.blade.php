@@ -191,7 +191,7 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="single-product border p-2">
                                     <div class="product-img">
-                                        <a href="product-details.html">
+                                        <a href="{{ route('product.detail',$product->slug) }}">
                                             <img class="default-img" src="{{ asset('storage/' . $product->image) }}"
                                                 alt="#">
                                             <img class="hover-img" src="{{ asset('storage/' . $product->image) }}"
@@ -212,7 +212,7 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="product-details.html">{{ $product->name }}</a></h3>
+                                        <h3><a href="{{ route('product.detail',$product->slug) }}">{{ $product->name }}</a></h3>
                                         <div class="product-price">
                                             @if ($product->sale_price > 0 || $product->sale_price != null)
                                                 <span class="old">{{ $product->regular_price }} ৳</span>
@@ -301,7 +301,7 @@
     </section>
     <!-- End Shop Newsletter -->
 
-    
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">

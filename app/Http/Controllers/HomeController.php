@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::where('status', 'active');
+        $products = Product::where('status', 'active')->orderBy('created_at','desc')->paginate(8);
         return view('store.index',compact('products'));
     }
 
@@ -26,6 +26,15 @@ class HomeController extends Controller
         $search_category = Category::with('product')->where('slug',$slug)->first();
         return view('store.category_search.shop',compact('search_category','categories'));
     }
+
+
+
+    public function product_detail($slug) {
+        $product = Product::where('slug', $slug)->first();
+        return view('store.product-detail',compact('product'));
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
