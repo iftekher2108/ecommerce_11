@@ -17,7 +17,9 @@ class ShopController extends Controller
     {
         $categories = Category::where('status','active')->get(['name','slug']);
         $products = Product::where('status','active')->paginate(9);
-        return view('store.shop',compact('categories','products'));
+        $side_products = Product::where('status','active')->inRandomOrder('id')->get()->take(4);
+        // return $side_products;
+        return view('store.shop',compact('categories','products','side_products'));
     }
 
     /**

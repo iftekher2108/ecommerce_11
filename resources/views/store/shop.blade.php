@@ -79,60 +79,33 @@
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
                             <h3 class="title">Recent post</h3>
+
+                            @foreach ( $side_products as $side_product )
                             <!-- Single Post -->
                             <div class="single-post first">
                                 <div class="image">
-                                    <img src="https://via.placeholder.com/75x75" alt="#">
+                                    <img src="{{ asset('storage/'.$side_product->image) }}" alt="#">
                                 </div>
                                 <div class="content">
-                                    <h5><a href="#">Girls Dress</a></h5>
+                                    <h5><a href="{{ route('product.detail',$side_product->slug) }}">{{ $side_product->name }}</a></h5>
                                     <p class="price">$99.50</p>
-                                    <ul class="reviews">
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li><i class="ti-star"></i></li>
-                                        <li><i class="ti-star"></i></li>
-                                    </ul>
+
+                                        @if ($side_product->sale_price > 0 || $side_product->sale_price != null)
+                                            <del>{{ $side_product->regular_price }} ৳</del>
+                                            <p>{{ $side_product->sale_price }} ৳</p>
+                                        @else
+                                            <p>{{ $side_product->regular_price }} ৳</p>
+                                        @endif
+
                                 </div>
                             </div>
                             <!-- End Single Post -->
-                            <!-- Single Post -->
-                            <div class="single-post first">
-                                <div class="image">
-                                    <img src="https://via.placeholder.com/75x75" alt="#">
-                                </div>
-                                <div class="content">
-                                    <h5><a href="#">Women Clothings</a></h5>
-                                    <p class="price">$99.50</p>
-                                    <ul class="reviews">
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li><i class="ti-star"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Post -->
-                            <!-- Single Post -->
-                            <div class="single-post first">
-                                <div class="image">
-                                    <img src="https://via.placeholder.com/75x75" alt="#">
-                                </div>
-                                <div class="content">
-                                    <h5><a href="#">Man Tshirt</a></h5>
-                                    <p class="price">$99.50</p>
-                                    <ul class="reviews">
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                        <li class="yellow"><i class="ti-star"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Post -->
+                            @endforeach
+
+
+
+
+
                         </div>
                         <!--/ End Single Widget -->
 

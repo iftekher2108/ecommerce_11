@@ -2038,8 +2038,12 @@
             </div>
 
             <div class="d-flex align-items-center justify-content-center">
-                <a href="{{ route('shop.index') }}" class="btn text-white btn-primary">See More</a>
+                {{ $products->links() }}
             </div>
+
+            {{-- <div class="d-flex align-items-center justify-content-center">
+                <a href="{{ route('shop.index') }}" class="btn text-white btn-primary">See More</a>
+            </div> --}}
         </div>
     </div>
     <!-- End Most Popular Area -->

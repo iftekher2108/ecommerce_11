@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::where('status', 'active')->orderBy('created_at','desc')->paginate(8);
+        $products = Product::where('status', 'active')->orderBy('created_at','desc')->paginate(12);
         return view('store.index',compact('products'));
     }
 

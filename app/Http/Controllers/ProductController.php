@@ -51,7 +51,7 @@ class ProductController extends Controller
             'status' => 'required',
         ]);
 
-
+    
         $product = new Product;
         $product->name = Str::title($request->name) ;
         $product->slug = Str::of($request->name)->slug('-');
@@ -89,8 +89,6 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('success','Product Added Successfully');
 
-
-
     }
 
 
@@ -122,7 +120,6 @@ class ProductController extends Controller
             'description' => 'nullable',
             'status' => 'required',
         ]);
-
 
         $product = Product::findOrFail($id);
         $product->name = Str::title($request->name) ;
