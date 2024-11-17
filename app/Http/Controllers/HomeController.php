@@ -31,7 +31,8 @@ class HomeController extends Controller
 
     public function product_detail($slug) {
         $product = Product::where('slug', $slug)->first();
-        return view('store.product-detail',compact('product'));
+        $side_products = Product::where('status','active')->where('slug','!=',$slug)->inRandomOrder('id')->get()->take(8);
+        return view('store.product-detail',compact('product','side_products'));
     }
 
 

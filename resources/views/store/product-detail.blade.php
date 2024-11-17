@@ -1,5 +1,47 @@
 @extends('layouts.base')
 
+@section('style')
+    <style>
+        .owl-nav {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            margin-top: -25px;
+        }
+
+        .owl-carousel .owl-nav div {
+            height: 60px;
+            width: 30px;
+            line-height: 58px;
+            background: #fff;
+            color: #333;
+            position: absolute;
+            margin: 0;
+            border-radius: 0;
+            font-size: 15px;
+            text-align: center;
+            -webkit-transition: all 0.4s ease;
+            -moz-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px #3333331c;
+        }
+
+        .owl-carousel .owl-nav div:hover {
+            color: #fff;
+            background: #f7941d !important;
+        }
+
+        .owl-carousel .owl-controls .owl-nav .owl-prev {
+            left: 0;
+        }
+
+        .owl-carousel .owl-controls .owl-nav .owl-next {
+            right: 0;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div>
         <div class="row no-gutters">
@@ -79,12 +121,96 @@
         </div>
         <hr>
 
-        <div class="p-3">
+        <div class="p-5">
             <h3 class="title">Description</h3>
             <hr>
             {!! $product->description !!}
 
         </div>
+
+        <hr>
+
+        <div class="owl-carousel popular-slider mb-5 ">
+
+            @forelse ($side_products as $side_product)
+                <!-- Start Single Product -->
+                <div class="single-product">
+                    <div class="product-img">
+                        <a href="{{ route('product.detail', $side_product->slug) }}">
+                            <img class="default-img" src="{{ asset('storage/' . $side_product->image) }}" alt="#">
+                            <img class="hover-img" src="{{ asset('storage/' . $side_product->image) }}" alt="#">
+                            {{-- <span class="out-of-stock">Hot</span> --}}
+                        </a>
+                        <div class="button-head">
+                            <div class="product-action">
+                                {{-- <a data-toggle="modal" onclick="quick_shop('{{ $side_product->id }}','{{ route('quick.shop.preview') }}')"
+                                            data-target="#exampleModal" title="Quick View" href="#"><i
+                                                class=" ti-eye"></i><span>Quick Shop</span></a> --}}
+                                <a title="Wishlist" class="mr-3" href="#"><i class=" ti-heart "></i><span>Add to
+                                        Wishlist</span></a>
+                                {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to
+                                            Compare</span></a> --}}
+                            </div>
+                            <div class="product-action-2">
+                                <a title="Add to cart" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3><a href="{{ route('product.detail', $side_product->slug) }}">{{ $product->name }}</a></h3>
+                        <div class="product-price">
+                            @if ($side_product->sale_price > 0 || $side_product->sale_price != null)
+                                <span class="old">{{ $side_product->regular_price }} ৳</span>
+                                <span>{{ $side_product->sale_price }} ৳</span>
+                            @else
+                                <span>{{ $side_product->regular_price }} ৳</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Product -->
+
+            @empty
+            @endforelse
+
+
+
+            <!-- Start Single Product -->
+            {{-- <div class="single-product">
+                        <div class="product-img">
+                            <a href="product-details.html">
+                                <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+                                <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                            </a>
+                            <div class="button-head">
+                                <div class="product-action">
+                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View"
+                                        href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                    <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to
+                                            Wishlist</span></a>
+                                    <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to
+                                            Compare</span></a>
+                                </div>
+                                <div class="product-action-2">
+                                    <a title="Add to cart" href="#">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+                            <div class="product-price">
+                                <span>$50.00</span>
+                            </div>
+                        </div>
+                    </div> --}}
+            <!-- End Single Product -->
+
+
+        </div>
+
+
+
+
 
     </div>
 @endsection

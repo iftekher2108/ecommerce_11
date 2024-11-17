@@ -47,6 +47,7 @@
 	<link rel="stylesheet" href="{{ asset('store_assets/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('store_assets/css/responsive.css') }}">
 	<link rel="stylesheet" href="{{ asset('store_assets/style.css') }}">
+    @yield('style')
 
 
 </head>
