@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
-
-use function Termwind\render;
 
 class ShopController extends Controller
 {
@@ -16,10 +15,10 @@ class ShopController extends Controller
     public function shop_index()
     {
         $categories = Category::where('status','active')->get(['name','slug']);
+        $brands = Brand::where('status','active')->get(['name','slug']);
         $products = Product::where('status','active')->paginate(9);
         $side_products = Product::where('status','active')->inRandomOrder('id')->get()->take(4);
-        // return $side_products;
-        return view('store.shop',compact('categories','products','side_products'));
+        return view('store.shop',compact('brands','categories','products','side_products'));
     }
 
     /**

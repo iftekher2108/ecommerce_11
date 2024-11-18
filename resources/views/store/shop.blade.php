@@ -26,40 +26,51 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="shop-sidebar">
-                        <!-- Single Widget -->
-                        <div class="single-widget category">
-                            <h3 class="title">Categories</h3>
-                            <ul class="categor-list">
-                                @foreach ($categories as $category)
-                                    <li><a href="{{ route('category.search',$category->slug) }}">{{ $category->name }}</a></li>
-                                @endforeach
+                        <form action="" method="GET">
+                            @csrf
+                            <!-- Single Widget -->
+                            <div class="category">
+                                <h3 class="title">Brands</h3>
+                                <ul class="categor-list p-3">
+                                    @foreach ($brands as $brand)
+                                        <li><input type="checkbox" id="{{ $brand->slug }}" class="form-check-input">
+                                            <label for="{{ $brand->slug }}">{{ $brand->name }}</label>
+                                            {{-- <a href="{{ route('category.search', $category->slug) }}">{{ $category->name }}</a> --}}
+                                        </li>
+                                    @endforeach
 
-                                {{-- <li><a href="#">jacket</a></li>
-										<li><a href="#">jeans</a></li>
-										<li><a href="#">sweatshirts</a></li>
-										<li><a href="#">trousers</a></li>
-										<li><a href="#">kitwears</a></li>
-										<li><a href="#">accessories</a></li> --}}
-
-                            </ul>
-                        </div>
-                        <!--/ End Single Widget -->
-                        <!-- Shop By Price -->
-                        <div class="single-widget range">
-                            <h3 class="title">Shop by Price</h3>
-                            <div class="price-filter">
-                                <div class="price-filter-inner">
-                                    <div id="slider-range"></div>
-                                    <div class="price_slider_amount">
-                                        <div class="label-input">
-                                            <span>Range:</span><input type="text"  id="amount" name="price"
-                                                placeholder="Add Your Price" />
+                                </ul>
+                            </div>
+                            <!--/ End Single Widget -->
+                            <!-- Single Widget -->
+                            <div class="category mt-2">
+                                <h3 class="title">Categories</h3>
+                                <ul class="categor-list p-3">
+                                    @foreach ($categories as $category)
+                                        <li><input type="checkbox" id="{{ $category->slug }}" class="form-check-input">
+                                            <label for="{{ $category->slug }}">{{ $category->name }}</label>
+                                            {{-- <a href="{{ route('category.search', $category->slug) }}">{{ $category->name }}</a> --}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <!--/ End Single Widget -->
+                            <!-- Shop By Price -->
+                            <div class="range my-2">
+                                <h3 class="title">Shop by Price</h3>
+                                <div class="price-filter">
+                                    <div class="price-filter-inner">
+                                        <div id="slider-range"></div>
+                                        <div class="price_slider_amount">
+                                            <div class="label-input">
+                                                <span>Range:</span><input type="text" id="amount" name="price"
+                                                    placeholder="Add Your Price" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {{-- <ul class="check-box-list">
+                                {{-- <ul class="check-box-list">
                                 <li>
                                     <label class="checkbox-inline" for="1"><input name="news" id="1"
                                             type="checkbox">$20 - $50<span class="count">(3)</span></label>
@@ -74,21 +85,30 @@
                                 </li>
                             </ul> --}}
 
-                        </div>
-                        <!--/ End Shop By Price -->
+                            </div>
+                            <!--/ End Shop By Price -->
+
+                            <div class="d-flex justify-content-end">
+                                <button class="btn">Filter</button>
+                            </div>
+
+                        </form>
+
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
                             <h3 class="title">Recent post</h3>
 
-                            @foreach ( $side_products as $side_product )
-                            <!-- Single Post -->
-                            <div class="single-post first">
-                                <div class="image">
-                                    <img src="{{ asset('storage/'.$side_product->image) }}" alt="#">
-                                </div>
-                                <div class="content">
-                                    <h5><a href="{{ route('product.detail',$side_product->slug) }}">{{ $side_product->name }}</a></h5>
-                                    <p class="price">$99.50</p>
+                            @foreach ($side_products as $side_product)
+                                <!-- Single Post -->
+                                <div class="single-post first">
+                                    <div class="image">
+                                        <img src="{{ asset('storage/' . $side_product->image) }}" alt="#">
+                                    </div>
+                                    <div class="content">
+                                        <h5><a
+                                                href="{{ route('product.detail', $side_product->slug) }}">{{ $side_product->name }}</a>
+                                        </h5>
+                                        <p class="price">$99.50</p>
 
                                         @if ($side_product->sale_price > 0 || $side_product->sale_price != null)
                                             <del>{{ $side_product->regular_price }} ৳</del>
@@ -97,9 +117,9 @@
                                             <p>{{ $side_product->regular_price }} ৳</p>
                                         @endif
 
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- End Single Post -->
+                                <!-- End Single Post -->
                             @endforeach
 
 
@@ -164,7 +184,7 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="single-product border p-2">
                                     <div class="product-img">
-                                        <a href="{{ route('product.detail',$product->slug) }}">
+                                        <a href="{{ route('product.detail', $product->slug) }}">
                                             <img class="default-img" src="{{ asset('storage/' . $product->image) }}"
                                                 alt="#">
                                             <img class="hover-img" src="{{ asset('storage/' . $product->image) }}"
@@ -173,8 +193,9 @@
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#exampleModal"
-                                                    onclick="quick_shop('{{ $product->id }}','{{ url('quick-shop-preview') }}')" title="Quick View"
-                                                    href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                    onclick="quick_shop('{{ $product->id }}','{{ url('quick-shop-preview') }}')"
+                                                    title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick
+                                                        Shop</span></a>
                                                 <a title="Wishlist" class="mr-2" href="#"><i
                                                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
@@ -185,7 +206,9 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="{{ route('product.detail',$product->slug) }}">{{ $product->name }}</a></h3>
+                                        <h3><a
+                                                href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
+                                        </h3>
                                         <div class="product-price">
                                             @if ($product->sale_price > 0 || $product->sale_price != null)
                                                 <span class="old">{{ $product->regular_price }} ৳</span>
@@ -241,14 +264,13 @@
 
                     </div>
 
-                    <div>
-                        {{ $products->links() }}
-                    </div>
-
                 </div>
             </div>
         </div>
     </section>
+    <div class="m-5">
+        {{ $products->links() }}
+    </div>
     <!--/ End Product Style 1  -->
 
     <!-- Start Shop Newsletter  -->
@@ -280,8 +302,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            class="ti-close" aria-hidden="true"></span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close"
+                            aria-hidden="true"></span></button>
                 </div>
                 <div class="modal-body">
 
@@ -294,19 +316,17 @@
 
 
 @section('script')
-<script>
-          $( "#slider-range" ).slider({
-			  range: true,
-			  min: 0,
-			  max: {{ DB::table('products')->max('regular_price') }} + 2000,
-			  values: [ 120, {{ DB::table('products')->avg('regular_price') }} + 2000 ],
-			  slide: function( event, ui ) {
-				$( "#amount" ).val( "৳" + ui.values[ 0 ] + " - ৳" + ui.values[ 1 ] );
-			  }
-			});
-			$( "#amount" ).val( "৳" + $( "#slider-range" ).slider( "values", 0 ) +
-			  " - ৳" + $( "#slider-range" ).slider( "values", 1 ) );
-</script>
+    <script>
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: {{ DB::table('products')->max('regular_price') }} + 2000,
+            values: [120, {{ DB::table('products')->avg('regular_price') }} + 2000],
+            slide: function(event, ui) {
+                $("#amount").val("৳" + ui.values[0] + " - ৳" + ui.values[1]);
+            }
+        });
+        $("#amount").val("৳" + $("#slider-range").slider("values", 0) +
+            " - ৳" + $("#slider-range").slider("values", 1));
+    </script>
 @endsection
-
-

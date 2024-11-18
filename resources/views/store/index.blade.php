@@ -18,7 +18,7 @@
                                         <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it
                                             pereri <br> odiy maboriosm.</p>
                                         <div class="button">
-                                            <a href="#" class="btn">Shop Now!</a>
+                                            <a href="{{ route('shop.index') }}" class="btn">Shop Now!</a>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,6 @@
 
     </section>
     <!--/ End Slider Area -->
-
 
 
     <!-- Start Shop Services Area -->
@@ -1892,7 +1891,7 @@
                 <div class="col-12">
                     <div class="owl-carousel popular-slider">
 
-                        @forelse ($products->take(8) as $product)
+                        @forelse ($side_products as $product)
                             <!-- Start Single Product -->
                             <div class="single-product">
                                 <div class="product-img">
@@ -1990,8 +1989,7 @@
             </div>
             <div class="row">
 
-
-                    @forelse ($products->take(8) as $product)
+                    @forelse ($products as $product)
                     <div class="col-lg-3 col-md-4">
                             <!-- Start Single Product -->
                             <div class="single-product">
@@ -2037,7 +2035,7 @@
 
             </div>
 
-            <div class="d-flex align-items-center justify-content-center">
+            <div class="mt-4">
                 {{ $products->links() }}
             </div>
 

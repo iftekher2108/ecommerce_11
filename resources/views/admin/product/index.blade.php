@@ -16,7 +16,7 @@
                 <th><input type="checkbox" class="form-check-input border border-black"></th>
                 <th class="text-white">Picture</th>
                 <th class="text-white">Name</th>
-                {{-- <th class="text-white">Users</th> --}}
+                <th class="text-white">Category</th>
                 <th class="text-white">Status</th>
                 <th class="text-white">Actions</th>
               </tr>
@@ -29,6 +29,7 @@
                 <img src="{{ asset('storage/'.$product->image) }}" class="img-fluid" height="40" width="40" alt=""/>
                 </td>
                 <td>{{ $product->name }}</td>
+                <td>{{ $product->category->name }}</td>
 
                 <td><span class="badge  {{ $product->status == 'active' ? "bg-success" : "bg-danger" }} me-1">{{ $product->status }}</span></td>
 

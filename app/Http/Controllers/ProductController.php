@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function product()
     {
-        $products = Product::get();
+        $products = Product::with('category')->get();
         return view('admin.product.index',compact('products'));
     }
 
@@ -51,7 +51,7 @@ class ProductController extends Controller
             'status' => 'required',
         ]);
 
-    
+
         $product = new Product;
         $product->name = Str::title($request->name) ;
         $product->slug = Str::of($request->name)->slug('-');

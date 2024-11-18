@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('home.index');
-    Route::get('category/{slug}','category_search')->name('category.search');
+    Route::get('shop/product/{brand}/','category_search')->name('category.search');
     Route::get('product/{slug}','product_detail')->name('product.detail');
 });
 
