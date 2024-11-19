@@ -26,14 +26,12 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="shop-sidebar">
-                        <form action="" method="GET">
-                            @csrf
                             <!-- Single Widget -->
                             <div class="category">
                                 <h3 class="title">Brands</h3>
                                 <ul class="categor-list p-3">
-                                    @foreach ($brands as $brand)
-                                        <li><input type="checkbox" id="{{ $brand->slug }}" class="form-check-input">
+                                    @foreach ($brands as $key => $brand)
+                                        <li><input type="checkbox" name="brand[{{ $key }}]" value="{{ $brand->id }}" id="{{ $brand->slug }}" class="form-check-input">
                                             <label for="{{ $brand->slug }}">{{ $brand->name }}</label>
                                             {{-- <a href="{{ route('category.search', $category->slug) }}">{{ $category->name }}</a> --}}
                                         </li>
@@ -46,8 +44,8 @@
                             <div class="category mt-2">
                                 <h3 class="title">Categories</h3>
                                 <ul class="categor-list p-3">
-                                    @foreach ($categories as $category)
-                                        <li><input type="checkbox" id="{{ $category->slug }}" class="form-check-input">
+                                    @foreach ($categories as $key => $category)
+                                        <li><input type="checkbox" name="category[{{ $key }}]" id="{{ $category->slug }}" class="form-check-input">
                                             <label for="{{ $category->slug }}">{{ $category->name }}</label>
                                             {{-- <a href="{{ route('category.search', $category->slug) }}">{{ $category->name }}</a> --}}
                                         </li>
@@ -89,10 +87,8 @@
                             <!--/ End Shop By Price -->
 
                             <div class="d-flex justify-content-end">
-                                <button class="btn">Filter</button>
+                                <button class="btn shop_filter_search">Filter</button>
                             </div>
-
-                        </form>
 
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
@@ -328,5 +324,13 @@
         });
         $("#amount").val("৳" + $("#slider-range").slider("values", 0) +
             " - ৳" + $("#slider-range").slider("values", 1));
+
+
+            $('.shop_filter_search').click(function(){
+                console.log("iftekher mahmud pervez")
+            })
+
+
+
     </script>
 @endsection

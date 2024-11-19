@@ -14,8 +14,8 @@ class ShopController extends Controller
      */
     public function shop_index()
     {
-        $categories = Category::where('status','active')->get(['name','slug']);
-        $brands = Brand::where('status','active')->get(['name','slug']);
+        $categories = Category::where('status','active')->get(['id','name','slug']);
+        $brands = Brand::where('status','active')->get(['id','name','slug']);
         $products = Product::where('status','active')->paginate(9);
         $side_products = Product::where('status','active')->inRandomOrder('id')->get()->take(4);
         return view('store.shop',compact('brands','categories','products','side_products'));

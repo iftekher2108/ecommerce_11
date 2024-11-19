@@ -22,15 +22,16 @@ class HomeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function filter_search(Request $request)
+    public function shop_search(Request $request)
     {
-        $categories = Category::where('status', 'active')->get(['name','slug']);
-        $brands = Brand::where('status','active')->get(['name','slug']);
-        // $search_category = Category::with('product')->where('slug',$slug)->first();
-        dd($request->input());
-        if(!empty($request->input())) {
-        }
-        return view('store.category_search.shop',compact('brands','categories'));
+        $categories = Category::where('status', 'active')->get(['id','name','slug']);
+        $brands = Brand::where('status','active')->get(['id','name','slug']);
+        $filter_product = Product::with('brand','category')->where('brand_id','=',[])->get();
+        // dd($request->input());
+        // if(!empty($request->input())) {
+        // }
+
+        return view('store.shop_search.shop',compact('brands','categories'));
     }
 
 
