@@ -27,39 +27,59 @@
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="shop-sidebar">
                         <!-- Single Widget -->
-                        <div class="single-widget category">
-                            <h3 class="title">Categories</h3>
-                            <ul class="categor-list">
-                                @foreach ($categories as $category)
-                                    <li><a href="{{ route('category.search',$category->slug ) }}">{{ $category->name }}</a></li>
+                        <div class="category">
+                            <h3 class="title">Brands</h3>
+                            <ul class="brand-list p-3">
+                                @foreach ($brands as $key => $brand)
+                                    <li><input type="checkbox" name="brand[{{ $key }}]" value="{{ $brand->id }}"
+                                            id="{{ $brand->slug }}" class="form-check-input">
+                                        <label for="{{ $brand->slug }}">{{ $brand->name }}</label>
+                                        {{-- <a href="{{ route('category.search', $category->slug) }}">{{ $category->name }}</a> --}}
+                                    </li>
                                 @endforeach
-
-                                {{-- <li><a href="#">jacket</a></li>
-										<li><a href="#">jeans</a></li>
-										<li><a href="#">sweatshirts</a></li>
-										<li><a href="#">trousers</a></li>
-										<li><a href="#">kitwears</a></li>
-										<li><a href="#">accessories</a></li> --}}
 
                             </ul>
                         </div>
                         <!--/ End Single Widget -->
+                        <!-- Single Widget -->
+                        <div class="category mt-2">
+                            <h3 class="title">Categories</h3>
+                            <ul class="category-list p-3">
+                                @foreach ($categories as $key => $category)
+                                    <li><input type="checkbox" value="{{ $category->id }}"
+                                            name="category[{{ $key }}]" id="{{ $category->slug }}"
+                                            class="form-check-input">
+                                        <label for="{{ $category->slug }}">{{ $category->name }}</label>
+                                        {{-- <a href="{{ route('category.search', $category->slug) }}">{{ $category->name }}</a> --}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!--/ End Single Widget -->
                         <!-- Shop By Price -->
-                        <div class="single-widget range">
+                        <div class="range my-2">
                             <h3 class="title">Shop by Price</h3>
                             <div class="price-filter">
                                 <div class="price-filter-inner">
                                     <div id="slider-range"></div>
                                     <div class="price_slider_amount">
                                         <div class="label-input">
-                                            <span>Range:</span><input type="text" id="amount" name="price"
+                                            <span>Range:</span><input type="text" readonly id="amount" name="price"
                                                 placeholder="Add Your Price" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- <ul class="check-box-list">
+                        </div>
+                        <!--/ End Shop By Price -->
+
+                        <div class="d-flex justify-content-end">
+                            <button onclick="filter_search('{{ route('shop.search') }}')"
+                                class="btn shop_filter_search">Filter</button>
+                        </div>
+
+                        {{-- <ul class="check-box-list">
                                 <li>
                                     <label class="checkbox-inline" for="1"><input name="news" id="1"
                                             type="checkbox">$20 - $50<span class="count">(3)</span></label>
@@ -74,7 +94,6 @@
                                 </li>
                             </ul> --}}
 
-                        </div>
                         <!--/ End Shop By Price -->
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
@@ -185,7 +204,7 @@
 						</div> --}}
 
 
-                    <div class="row">
+                    <div class="row main-products-section">
 
                         @forelse ($search_category->product as $item)
                             <div class="col-lg-4 col-md-6 col-12">
@@ -200,8 +219,9 @@
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#exampleModal"
-                                                    onclick="quick_shop('{{ $item->id }}','{{ url('quick-shop-preview') }}')" title="Quick View"
-                                                    href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                    onclick="quick_shop('{{ $item->id }}','{{ url('quick-shop-preview') }}')"
+                                                    title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick
+                                                        Shop</span></a>
                                                 <a title="Wishlist" class="mr-2" href="#"><i
                                                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
@@ -324,17 +344,122 @@
 @endsection
 
 @section('script')
-<script>
-          $( "#slider-range" ).slider({
-			  range: true,
-			  min: 0,
-			  max: {{ DB::table('products')->max('regular_price') }} + 2000,
-			  values: [ 120, {{ DB::table('products')->avg('regular_price') }} + 2000 ],
-			  slide: function( event, ui ) {
-				$( "#amount" ).val( "৳" + ui.values[ 0 ] + " - ৳" + ui.values[ 1 ] );
-			  }
-			});
-			$( "#amount" ).val( "৳" + $( "#slider-range" ).slider( "values", 0 ) +
-			  " - ৳" + $( "#slider-range" ).slider( "values", 1 ) );
-</script>
+    <script>
+        // filter ammount first and last
+        var first_value;
+        var last_value;
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: {{ DB::table('products')->max('regular_price') }} + 2000,
+            values: [120, {{ DB::table('products')->avg('regular_price') }} + 2000],
+            slide: function(event, ui) {
+                $("#amount").val("৳" + ui.values[0] + " - ৳" + ui.values[1]);
+                first_value = ui.values[0];
+                last_value = ui.values[1]
+            }
+        });
+
+
+        $("#amount").val("৳" + $("#slider-range").slider("values", 0) +
+            " - ৳" + $("#slider-range").slider("values", 1));
+
+
+        // $('.shop_filter_search').click(function(){
+        //     console.log("iftekher mahmud pervez")
+
+        // })
+
+        function filter_search(route) {
+            console.log(first_value);
+            console.log(last_value);
+            var brands = [];
+            var categories = [];
+            var famount = first_value
+            var lamount = last_value
+            $('.brand-list li input[type=checkbox]:checked').each(function() {
+                brands.push($(this).val())
+            });
+
+            $('.category-list li input[type=checkbox]:checked').each(function() {
+                categories.push($(this).val())
+            });
+
+            console.log(brands)
+            console.log(categories)
+
+            $.ajax({
+                type: "post",
+                url: route,
+                data: {
+                    category_id: categories,
+                    brand_id: brands,
+                    famount: famount,
+                    lamount: lamount
+                },
+                dataType: "json",
+                success: function(response) {
+                    var products = "";
+                    $('.main-products-section').empty();
+                    if(response.products) {
+                     $.each(response.products, function(index, item) {
+                        products += `
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="single-product border p-2">
+                                    <div class="product-img">
+                                        <a href="product/${item.slug}">
+                                            <img class="default-img" src="/storage/${item.image}"
+                                                alt="#">
+                                            <img class="hover-img" src="/storage/${item.image}"
+                                                alt="#">
+                                        </a>
+                                        <div class="button-head">
+                                            <div class="product-action">
+                                                <a data-toggle="modal" data-target="#exampleModal"
+                                                    onclick="quick_shop('${item.id}','quick-shop-preview')"
+                                                    title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick
+                                                        Shop</span></a>
+                                                <a title="Wishlist" class="mr-2" href="#"><i
+                                                        class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
+                                            </div>
+                                            <div class="product-action-2">
+                                                <a title="Add to cart" class="btn" href="#">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3><a
+                                            href="product/${item.slug}">${item.name}</a>
+                                        </h3>
+                                        <div class="product-price">
+                                        ${(item.sale_price > 0 || item.sale_price != null) ?
+                                         `<span class="old">${item.regular_price} ৳</span>
+                                                                <span> ${item.sale_price} ৳</span>` :
+                                                 `<span>${item.regular_price} ৳</span>`
+                                                 }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `
+                    })
+                    $('.main-products-section').html(products);
+                    }
+                    if(response.error) {
+                    $('.main-products-section').html(`<h2>${response.error}</h2>`);
+                    }
+
+
+                },
+
+                // error: function(request, error) {
+                //     // console.log(arguments);
+                //     alert(" Can't do because: " + error);
+                // },
+
+            });
+
+        }
+    </script>
 @endsection

@@ -33,7 +33,7 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Product Catelog</span>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ (Request::routeIs('brand.index') || Request::routeIs('category.index') || Request::routeIs('product.index')) ? 'active' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div>Product Catelog</div>

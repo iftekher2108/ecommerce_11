@@ -1,13 +1,15 @@
 
 
-        // Global ajax setup
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+
 
      $(document).on('ready', function() {
+
+          // Global ajax setup
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
 		/*====================================
 			Mobile Menu
@@ -42,7 +44,7 @@
 		  Slider Range JS
 		=========================*/
 
-        
+
 		/*=======================
 		  Home Slider JS
 		=========================*/

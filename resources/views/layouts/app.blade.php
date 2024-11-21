@@ -230,17 +230,11 @@
     <!-- / Layout wrapper -->
 
 
-
-
-
-
-
     {{-- @vite([
     'resources/js/app.js',
     // 'public/admin_assets/js/bootstrap.js',
     'public/admin_assets/js/main.js',
 ]); --}}
-
 
     <script src="{{ asset('admin_assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('admin_assets/js/jquery.min.js') }}"></script>

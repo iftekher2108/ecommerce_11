@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -6,18 +7,23 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 
-Route::prefix('admin')->group(function(){
+Route::get('admin', function () {
+    return redirect()->route('login');
+});
+
+Route::prefix('admin')->group(function () {
     Auth::routes();
+
     Route::middleware('auth')->group(function () {
 
-        Route::controller(DashboardController::class)->group(function(){
-            Route::get('dashboard','index')->name('dashboard');
+        Route::controller(DashboardController::class)->group(function () {
+            Route::get('dashboard', 'index')->name('dashboard');
         });
 
         Route::controller(ProductController::class)->group(function () {
             Route::get('product', 'product')->name('product.index');
             Route::get('product/create', 'product_create')->name('product.create');
-            Route::post('product/store','product_store')->name('product.store');
+            Route::post('product/store', 'product_store')->name('product.store');
             Route::get('product/{id}/edit', 'product_edit')->name('product.edit');
             Route::post('product/{id}/update', 'product_update')->name('product.update');
         });
@@ -34,7 +40,4 @@ Route::prefix('admin')->group(function(){
             Route::post('brand/store', 'brand_store')->name('brand.store');
         });
     });
-    });
-
-
-
+});

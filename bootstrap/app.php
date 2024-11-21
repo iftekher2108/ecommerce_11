@@ -16,7 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // $middleware->validateCsrfTokens(except: [
+        //     'shop/product/filter' // <-- exclude this route
+        // ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
