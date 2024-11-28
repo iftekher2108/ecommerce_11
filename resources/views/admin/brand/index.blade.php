@@ -14,7 +14,7 @@
               <table class="table normal-dt table-bordered">
                 <thead>
                   <tr class="bg-primary">
-                    <th><input type="checkbox" class="form-check-input border border-black"></th>
+                    <td><input type="checkbox" class="form-check-input select-all"></td>
                     <th class="text-white">Picture</th>
                     <th class="text-white">Title</th>
                     {{-- <th class="text-white">Users</th> --}}
@@ -26,7 +26,7 @@
 
                     @foreach ($brands as $brand)
                     <tr>
-                    <td><input type="checkbox" value="{{ $brand->id }}" class="form-check-input"></td>
+                    <td><input type="checkbox" value="{{ $brand->id }}" class="form-check-input select-item"></td>
                     <td>
                       <img src="{{ asset('storage/'.$brand->image) }}" class="img-thumbnail" height="40" width="40" alt="Category">
                     </td>
