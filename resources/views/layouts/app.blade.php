@@ -66,25 +66,19 @@
                                 @yield('title')
                             </div>
 
-                            <!-- Search -->
-                            {{-- <div class="navbar-nav align-items-center">
-                            <div class="nav-item d-flex align-items-center">
-                                <i class="bx bx-search fs-4 lh-0"></i>
-                                <input type="text" class="form-control border-0 shadow-none"
-                                    placeholder="Search..." aria-label="Search..." />
-                            </div>
-                        </div> --}}
-                            <!-- /Search -->
 
                             <ul class="navbar-nav flex-row align-items-center ms-auto">
                                 <!-- Place this tag where you want the button to render. -->
 
-                                {{-- <li class="nav-item lh-1 me-3">
-                                <a class="github-button"
-                                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                    data-icon="octicon-star" data-size="large" data-show-count="true"
-                                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                            </li> --}}
+                                <li class="nav-item lh-1 me-3">
+                                    <form action="{{ route('local.lang')}}"  method="POST" >
+                                        @csrf
+                                        <select name="language" onChange="this.form.submit()" class="form-select bg-dark text-white">
+                                            <option value="en" {{ app()->getLocale()=== 'en' ? 'selected': ''}}>English</option>
+                                            <option value="bn" {{ app()->getLocale()=== 'bn' ? 'selected': ''}}  >Bangla</option>
+                                        </select>
+                                    </form>
+                                </li>
 
                                 <!-- User -->
                                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -243,6 +237,7 @@
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/menu.js') }}"></script> --}}
     @yield('script')
+
 </body>
 
 </html>

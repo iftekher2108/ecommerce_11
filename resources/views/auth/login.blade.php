@@ -71,13 +71,13 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <div class="card shadow">
-                                        <div class="card-header p-3 bg-primary fs-3 text-white text-center">Admin Login</div>
+                                        <div class="card-header p-3 bg-primary fs-3 text-white text-center">{{ __('messages.admin').' '.__('messages.login') }}</div>
                                         <div class="card-body p-5">
                                             <form method="POST" action="{{ route('login') }}">
                                                 @csrf
 
                                                 <div class="row mb-3">
-                                                    <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                                                    <label for="email" class="form-label">{{ __('messages.email') }}</label>
 
                                                     <div class="">
                                                         <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -91,7 +91,7 @@
                                                 </div>
 
                                                 <div class="row mb-3">
-                                                    <label for="password" class="form-label">{{ __('Password') }}</label>
+                                                    <label for="password" class="form-label">{{ __('messages.password') }}</label>
 
                                                     <div class="">
                                                         <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -110,7 +110,7 @@
                                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                             <label class="form-check-label" for="remember">
-                                                                {{ __('Remember Me') }}
+                                                                {{ __('messages.remembers') }}
                                                             </label>
                                                         </div>
                                                     </div>
@@ -119,7 +119,7 @@
                                                 <div class="row mb-0 justify-content-center">
                                                     <div class="col-md-10">
                                                         <button type="submit" class="btn w-100 btn-primary">
-                                                            {{ __('Login') }}
+                                                            {{ __('messages.login') }}
                                                         </button>
 
                                                         {{-- @if (Route::has('password.request'))

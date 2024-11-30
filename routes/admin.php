@@ -17,6 +17,7 @@ Route::prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
 
         Route::controller(DashboardController::class)->group(function () {
+            Route::post('local-lang','localLang')->name('local.lang');
             Route::get('dashboard', 'index')->name('dashboard');
         });
 

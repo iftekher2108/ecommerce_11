@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -25,4 +27,15 @@ class DashboardController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function localLang(Request $request) {
+        $lang = $request->language;
+
+        if (!in_array($lang, ['en', 'bn'])) {
+            abort(400);
+        }
+        session('language', $lang);
+        return redirect()->back()->with('success','Languages Change Successfully');
+    }
+
 }

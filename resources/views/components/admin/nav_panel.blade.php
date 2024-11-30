@@ -25,35 +25,35 @@
         <li class="menu-item {{ Request::routeIs('dashboard') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div>Dashboard</div>
+                <div>{{ __('messages.panel.dashboard') }}</div>
             </a>
         </li>
 
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Product Catelog</span>
+            <span class="menu-header-text">{{ __('messages.panel.product').' '.__('messages.panel.catalog') }}</span>
         </li>
         <li class="menu-item {{ (Request::routeIs('brand.index') || Request::routeIs('category.index') || Request::routeIs('product.index')) ? 'active' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>Product Catelog</div>
+                <div>{{ __('messages.panel.product').' '.__('messages.panel.catalog') }}</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::routeIs('product.index') ? 'active' : '' }}">
                     <a href="{{ route('product.index') }}" class="menu-link">
-                        <div>Product</div>
+                        <div>{{ __('messages.panel.product') }}</div>
                     </a>
                 </li>
 
                 <li class="menu-item {{ Request::routeIs('brand.index') ? 'active' : '' }}">
                     <a href="{{ route('brand.index') }}" class="menu-link">
-                        <div>Brand</div>
+                        <div>{{ __('messages.panel.brand') }}</div>
                     </a>
                 </li>
 
                 <li class="menu-item {{ Request::routeIs('category.index') ? 'active' : '' }}">
                     <a href="{{ route('category.index') }}" class="menu-link">
-                        <div>Category</div>
+                        <div>{{ __('messages.panel.category') }}</div>
                     </a>
                 </li>
 

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('title','Dashboard')
+@section('title')
+{{ __('messages.panel.dashboard') }}
+@endsection
 @section('content')
 
     <div class="row">

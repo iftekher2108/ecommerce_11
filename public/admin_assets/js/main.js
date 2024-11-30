@@ -39,10 +39,6 @@ $(document).ready(function () {
 
     
 
-
-
-
-
     $(".advance-dt").DataTable({
         responsive: true,
         autoWidth: true,

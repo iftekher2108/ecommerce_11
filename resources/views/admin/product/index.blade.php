@@ -1,9 +1,11 @@
 @extends('layouts.app')
-@section('title','Product')
+@section('title')
+{{ __('messages.panel.product') }}
+@endsection
 @section('content')
 <div class="d-flex justify-content-between mb-3">
-<a href="" class="btn btn-danger">Delete all</a>
-<a href="{{ route('product.create') }}" class="btn btn-primary">Create</a>
+<a href="" class="btn btn-danger">{{ __('messages.panel.all').' '.__('messages.panel.delete') }}</a>
+<a href="{{ route('product.create') }}" class="btn btn-primary">{{ __('messages.panel.product').' '.__('messages.panel.add') }}</a>
 </div>
 
 <div class="card">
